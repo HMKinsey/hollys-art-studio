@@ -8,9 +8,9 @@ export const detailsItemSx: SxProps<Theme> = {
 
 const galleryFrameBaseSx = {
   boxSizing: 'border-box',
-  p: 1,
-  backgroundColor: '#33302E',
-  borderRadius: 2,
+  p: 0,
+  backgroundColor: 'transparent',
+  borderRadius: 0,
   overflow: 'hidden',
   boxShadow: 'none',
 }
@@ -31,20 +31,38 @@ export const galleryImageSx: SxProps<Theme> = {
   width: '100%',
   height: 'auto',
   maxWidth: '100%',
+  maxHeight: '72vh',
   objectFit: 'contain',
 }
 
-export const featuredArtworkSx: SxProps<Theme> = {
+export const featuredArtworkFrameSx: SxProps<Theme> = {
   aspectRatio: '4 / 5',
   width: '100%',
-  height: 'auto',
+  maxHeight: 'min(380px, calc(45vh - 64px))',
   boxSizing: 'border-box',
-  objectFit: 'cover',
+  p: 1,
   backgroundColor: '#33302E',
 }
 
+export const featuredArtworkSx: SxProps<Theme> = {
+  display: 'block',
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+}
+
+export const featuredArtworkTopCropSx: SxProps<Theme> = {
+  ...featuredArtworkSx,
+  objectPosition: 'center 25%',
+}
+
+export const featuredArtworkLowerCropSx: SxProps<Theme> = {
+  ...featuredArtworkSx,
+  objectPosition: 'center 65%',
+}
+
 export const featuredCaptionSx: SxProps<Theme> = {
-  minHeight: 76,
+  minHeight: 54,
   px: 2,
   py: 1,
   display: 'flex',
@@ -66,4 +84,31 @@ export const featuredTitleSx: SxProps<Theme> = {
 export const galleryTitleSx: SxProps<Theme> = {
   mb: 3,
   textAlign: 'center',
+  fontFamily: '"Dancing Script", cursive',
+  fontWeight: 500,
+  fontSize: { xs: '2.5rem', sm: '3rem' },
+  color: '#2D2B2A',
+}
+
+export const homeHeadingSx: SxProps<Theme> = {
+  fontFamily: '"Dancing Script", cursive',
+  fontSize: { xs: '1.8rem', sm: '2.1rem' },
+  fontWeight: 600,
+  mb: 0.5,
+  lineHeight: 1.25,
+}
+
+export const homeSubheadingSx: SxProps<Theme> = {
+  fontFamily: 'Roboto, Arial, sans-serif',
+  fontSize: { xs: '1rem', sm: '1.05rem' },
+  lineHeight: 1.7,
+  color: '#625d59',
+  mb: 1.5,
+}
+
+export const processBodySx: SxProps<Theme> = {
+  fontFamily: 'Roboto, Arial, sans-serif',
+  fontSize: { xs: '1rem', sm: '1.05rem' },
+  lineHeight: 1.7,
+  color: '#625d59',
 }

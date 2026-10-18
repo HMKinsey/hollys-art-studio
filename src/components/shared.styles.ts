@@ -10,14 +10,14 @@ export const portfolioTabPanelSx: SxProps<Theme> = {
 }
 
 export const contentPanelSx: SxProps<Theme> = {
-  p: { xs: 2, md: 4 },
+  p: { xs: 1.5, md: 2 },
   borderRadius: 3,
 }
 
 export const featuredGridSx: SxProps<Theme> = {
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
-  gap: 3,
+  gap: 2,
 }
 
 export const contentCardSx: SxProps<Theme> = {

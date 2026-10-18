@@ -23,7 +23,7 @@ export function Banner({ onTabChange }: BannerProps) {
         </Typography>
 
         <Typography variant="h6" sx={bannerDescriptionSx}>
-          Original artwork and live wedding painting, capturing your special day
+          Specialising in wedding painting, pet and family portrait commissions
         </Typography>
 
         <TabList
@@ -35,6 +35,7 @@ export function Banner({ onTabChange }: BannerProps) {
           sx={bannerTabListSx}
         >
           <Tab label="Live Wedding Painting" value="home" sx={bannerTabSx} />
+          <Tab label="The Process" value="process" sx={bannerTabSx} />
           <Tab label="About Me" value="details" sx={bannerTabSx} />
           <Tab label="Gallery" value="gallery" sx={bannerTabSx} />
         </TabList>
