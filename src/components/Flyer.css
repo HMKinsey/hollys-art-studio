@@ -61,6 +61,13 @@
     line-height: 1.4 !important;
   }
 
+  .flyer-artist-photo {
+    width: auto !important;
+    height: 45mm !important;
+    aspect-ratio: 3 / 4;
+    object-fit: contain !important;
+  }
+
   .flyer-actions {
     display: none !important;
   }

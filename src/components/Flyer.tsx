@@ -10,6 +10,7 @@ import {
 import { QRCodeSVG } from 'qrcode.react'
 import { useRef, useState } from 'react'
 import { portfolioPieces } from '../data/portfolio'
+import meImage from '../me.jpg'
 import './Flyer.css'
 import {
   flyerActionsSx,
@@ -42,14 +43,7 @@ export function Flyer() {
   const [pdfError, setPdfError] = useState('')
 
   const openFlyerPdf = async () => {
-    const pdfWindow = window.open('', '_blank')
-    if (!pdfWindow) {
-      setPdfError('Please allow pop-ups to open the flyer PDF.')
-      return
-    }
-
     setPdfError('')
-    pdfWindow.document.title = 'Preparing Holly’s Art Studio flyer…'
 
     try {
       const [{ default: html2canvas }, { jsPDF }] = await Promise.all([
@@ -95,10 +89,14 @@ export function Flyer() {
 
       pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, widthMm, heightMm)
       const pdfUrl = URL.createObjectURL(pdf.output('blob'))
-      pdfWindow.location.href = pdfUrl
+      const downloadLink = document.createElement('a')
+      downloadLink.href = pdfUrl
+      downloadLink.download = 'hollys-art-studio-flyer.pdf'
+      document.body.append(downloadLink)
+      downloadLink.click()
+      downloadLink.remove()
       window.setTimeout(() => URL.revokeObjectURL(pdfUrl), 60_000)
     } catch (error) {
-      pdfWindow.close()
       setPdfError(
         error instanceof Error ? error.message : 'Unable to create the flyer PDF.',
       )
@@ -143,16 +141,42 @@ export function Flyer() {
           ))}
         </Box>
 
-        <Box>
-          <Typography component="h2" sx={flyerSectionTitleSx}>
-            A little piece of your day, painted live
-          </Typography>
-          <Typography className="flyer-body" sx={flyerBodySx}>
-            Hi, I&apos;m Holly! I paint a bespoke oil portrait of your special day as it
-            unfolds, creating a lovely moment for your guests to enjoy and a one-of-a-kind
-            keepsake for you to treasure. From the romance of your ceremony to the joy of
-            your reception, your favourite moments come to life on canvas.
-          </Typography>
+        <Box
+          className="flyer-intro"
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr', sm: '150px minmax(0, 1fr)' },
+            alignItems: 'center',
+            gap: { xs: 1, sm: 2 },
+          }}
+        >
+          <Box
+            component="img"
+            className="flyer-artist-photo"
+            src={meImage}
+            alt="Holly, the artist behind Holly’s Art Studio"
+            sx={{
+              display: 'block',
+              width: '100%',
+              maxWidth: { xs: 180, sm: 'none' },
+              height: 'auto',
+              aspectRatio: '3 / 4',
+              objectFit: 'contain',
+              mx: 'auto',
+              borderRadius: 1,
+            }}
+          />
+          <Box>
+            <Typography component="h2" sx={flyerSectionTitleSx}>
+              A little piece of your day, painted live
+            </Typography>
+            <Typography className="flyer-body" sx={flyerBodySx}>
+              Hi, I&apos;m Holly! I paint a bespoke oil portrait of your special day as it
+              unfolds, creating a lovely moment for your guests to enjoy and a one-of-a-kind
+              keepsake for you to treasure. From the romance of your ceremony to the joy of
+              your reception, your favourite moments come to life on canvas.
+            </Typography>
+          </Box>
         </Box>
 
         <Box sx={flyerContactSx}>
@@ -208,7 +232,7 @@ export function Flyer() {
           sx={flyerPdfButtonSx}
           onClick={openFlyerPdf}
         >
-          Open as PDF
+          Download flyer PDF
         </Button>
         <Button
           variant="contained"
