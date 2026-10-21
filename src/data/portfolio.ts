@@ -1,6 +1,6 @@
-import easelWeddingPortrait from '../2ad68489-095f-4433-befd-ab51d09c77af.jpg'
-import familyPortrait from '../5179b70a-1d12-42ab-9807-e754a9fbe6b2.jpg'
-import weddingPortrait from '../1708808b-75de-4914-9807-d934d5a541f7.jpg'
+import HannahLiam from '../HannahLiam.jpg'
+import danielleChadEvie from '../DanielleChad.jpg'
+import weddingPortrait from '../NevilleRachel.jpg'
 
 export interface PortfolioPiece {
   title: string
@@ -13,14 +13,14 @@ export interface PortfolioPiece {
 export const portfolioPieces: PortfolioPiece[] = [
   {
     title: 'Hannah & Liam',
-    image: easelWeddingPortrait,
+    image: HannahLiam,
     imageAlt: 'Painted portrait of a couple displayed on an artist’s easel',
     orientation: 'portrait',
     crop: 'top',
   },
   {
     title: 'Danielle & Chad',
-    image: familyPortrait,
+    image: danielleChadEvie,
     imageAlt: 'Painting of a couple holding their baby outdoors',
     orientation: 'portrait',
   },
