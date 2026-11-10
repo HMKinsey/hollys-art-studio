@@ -15,7 +15,7 @@ export function AboutTab() {
         <img
           src={meImage}
           alt={sharedStrings.about.artistImageAlt}
-          className="mx-auto block aspect-[4/5] max-h-[360px] w-full rounded-2xl object-cover"
+          className="mx-auto block h-auto max-h-[440px] max-w-full rounded-2xl object-contain"
         />
       </div>
     </ContentPanel>

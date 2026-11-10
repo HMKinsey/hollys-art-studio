@@ -1,14 +1,12 @@
 import { QRCodeSVG } from 'qrcode.react'
 import { useRef, useState } from 'react'
-import { portfolioPieces } from '../data/portfolio'
+import { flyerPaintings } from '../data/portfolio'
 import { sharedStrings } from '../constants/shared'
 import meImage from '../assets/me.jpg'
 import { BodyText } from '../components/shared/BodyText'
 import { Caption } from '../components/shared/Caption'
 import { Heading } from '../components/shared/Heading'
 import './FlyerPage.css'
-
-const flyerPaintings = [portfolioPieces[0], portfolioPieces[2], portfolioPieces[1]]
 
 export function FlyerPage() {
   const sheetRef = useRef<HTMLDivElement>(null)

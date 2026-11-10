@@ -83,6 +83,18 @@ export const sharedStrings = {
   },
   portfolio: {
     pieces: {
+      sonyaDave: {
+        title: 'Sonya & Dave',
+        imageAlt: 'Live wedding painting of Sonya and Dave',
+      },
+      sheilaReg: {
+        title: 'Sheila & Reg',
+        imageAlt: 'Wedding painting of Sheila and Reg',
+      },
+      aliceTheCat: {
+        title: 'Alice the Cat',
+        imageAlt: 'Portrait painting of Alice the cat',
+      },
       hannahLiam: {
         title: 'Hannah & Liam',
         imageAlt: 'Painted portrait of a couple displayed on an artist’s easel',
@@ -94,6 +106,12 @@ export const sharedStrings = {
       rachelNeville: {
         title: 'Rachel & Neville',
         imageAlt: 'Painting of a newly married couple holding hands outdoors',
+      },
+    },
+    studioMoments: {
+      painting: {
+        title: 'Painting live on a wedding day',
+        imageAlt: 'Holly painting at a wedding',
       },
     },
   },
