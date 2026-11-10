@@ -1,0 +1,86 @@
+@import 'tailwindcss';
+
+:root {
+  --font-family-body: 'Roboto', Arial, sans-serif;
+  --font-family-display: 'Dancing Script', cursive;
+
+  --color-primitive-ink: #2d2b2a;
+  --color-primitive-muted: #625d59;
+  --color-primitive-blush: #f5e8e6;
+  --color-primitive-canvas: #f9f6f0;
+  --color-primitive-paper: #fffdf9;
+  --color-primitive-rose: #8a7370;
+  --color-primitive-rose-dark: #725e5b;
+  --color-primitive-line: #e9ded5;
+
+  --text-primary: var(--color-primitive-ink);
+  --text-secondary: var(--color-primitive-muted);
+  --text-muted: var(--color-primitive-muted);
+  --surface-canvas: var(--color-primitive-canvas);
+  --surface-paper: var(--color-primitive-paper);
+  --surface-blush: var(--color-primitive-blush);
+  --border-default: var(--color-primitive-line);
+  --accent-primary: var(--color-primitive-rose);
+  --accent-primary-hover: var(--color-primitive-rose-dark);
+
+  --layout-studio-max: 75rem;
+  --layout-flyer-max: 51.25rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-family-body);
+  --font-display: var(--font-family-display);
+
+  --container-studio: var(--layout-studio-max);
+  --container-flyer: var(--layout-flyer-max);
+
+  --color-ink: var(--text-primary);
+  --color-muted: var(--text-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-blush: var(--surface-blush);
+  --color-canvas: var(--surface-canvas);
+  --color-paper: var(--surface-paper);
+  --color-rose: var(--accent-primary);
+  --color-rose-dark: var(--accent-primary-hover);
+  --color-line: var(--border-default);
+}
+
+@utility wash {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--surface-blush) 18%,
+    var(--surface-blush) 82%,
+    transparent 100%
+  );
+}
+
+@utility studio-shell {
+  width: 100%;
+  max-width: var(--container-studio);
+  min-height: 100vh;
+  margin-inline: auto;
+  background-color: var(--surface-canvas);
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-width: 320px;
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    line-height: 1.5;
+    background-color: var(--surface-canvas);
+    color: var(--text-primary);
+    font-family: var(--font-family-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
