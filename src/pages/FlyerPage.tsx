@@ -35,13 +35,17 @@ export function FlyerPage() {
                 'error',
                 () =>
                   reject(
-                    new Error(sharedStrings.errors.flyerImageCouldNotLoad(image.alt)),
+                    new Error(
+                      sharedStrings.errors.flyerImageCouldNotLoad(image.alt),
+                    ),
                   ),
                 { once: true },
               )
             })
           } else if (image.naturalWidth === 0) {
-            throw new Error(sharedStrings.errors.flyerImageCouldNotLoad(image.alt))
+            throw new Error(
+              sharedStrings.errors.flyerImageCouldNotLoad(image.alt),
+            )
           }
         }),
       )
@@ -60,7 +64,14 @@ export function FlyerPage() {
         compress: true,
       })
 
-      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, widthMm, heightMm)
+      pdf.addImage(
+        canvas.toDataURL('image/png'),
+        'PNG',
+        0,
+        0,
+        widthMm,
+        heightMm,
+      )
       const pdfUrl = URL.createObjectURL(pdf.output('blob'))
       const downloadLink = document.createElement('a')
       downloadLink.href = pdfUrl
@@ -71,7 +82,9 @@ export function FlyerPage() {
       window.setTimeout(() => URL.revokeObjectURL(pdfUrl), 60_000)
     } catch (error) {
       setPdfError(
-        error instanceof Error ? error.message : sharedStrings.errors.createFlyerPdfFailed,
+        error instanceof Error
+          ? error.message
+          : sharedStrings.errors.createFlyerPdfFailed,
       )
     }
   }
@@ -79,7 +92,10 @@ export function FlyerPage() {
   return (
     <main className="flyer-page min-h-screen bg-canvas px-4 py-4 sm:py-8">
       {pdfError && (
-        <p role="alert" className="mx-auto mb-4 max-w-flyer rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-800">
+        <p
+          role="alert"
+          className="mx-auto mb-4 max-w-flyer rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-800"
+        >
           {pdfError}
         </p>
       )}
@@ -142,19 +158,28 @@ export function FlyerPage() {
             <div className="mt-2 flex flex-col gap-1">
               <BodyText className="flyer-body">
                 {sharedStrings.site.instagram}:{' '}
-                <a className="text-inherit underline" href={sharedStrings.site.instagramUrl}>
+                <a
+                  className="text-inherit underline"
+                  href={sharedStrings.site.instagramUrl}
+                >
                   {sharedStrings.site.instagramHandle}
                 </a>
               </BodyText>
               <BodyText className="flyer-body">
                 {sharedStrings.site.emailLabel}:{' '}
-                <a className="text-inherit underline" href={sharedStrings.site.emailUrl}>
+                <a
+                  className="text-inherit underline"
+                  href={sharedStrings.site.emailUrl}
+                >
                   {sharedStrings.site.email}
                 </a>
               </BodyText>
               <BodyText className="flyer-body">
                 {sharedStrings.site.websiteLabel}:{' '}
-                <a className="text-inherit underline" href={sharedStrings.site.websiteUrl}>
+                <a
+                  className="text-inherit underline"
+                  href={sharedStrings.site.websiteUrl}
+                >
                   {sharedStrings.site.website}
                 </a>
               </BodyText>

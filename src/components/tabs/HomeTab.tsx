@@ -8,9 +8,7 @@ import { FeaturedArtworkCard } from '../shared/FeaturedArtworkCard'
 export function HomeTab() {
   return (
     <ContentPanel>
-      <Heading className="mb-1">
-        {sharedStrings.home.heading}
-      </Heading>
+      <Heading className="mb-1">{sharedStrings.home.heading}</Heading>
       <BodyText className="mb-3">{sharedStrings.home.description}</BodyText>
       <div className="grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {featuredPortfolioPieces.map((piece) => (

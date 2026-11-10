@@ -32,13 +32,15 @@ export const sharedStrings = {
     ],
   },
   banner: {
-    description: 'Specialising in wedding painting, pet and family portrait commissions',
+    description:
+      'Specialising in wedding painting, pet and family portrait commissions',
   },
   footer: {
     copyright: "© 2026 Holly's Art Studio",
   },
   home: {
-    heading: 'Add a little magic to your special day with live wedding painting',
+    heading:
+      'Add a little magic to your special day with live wedding painting',
     description:
       'Guests can watch the artwork take shape, leaving you with a one-of-a-kind keepsake of the moment.',
   },
@@ -134,7 +136,8 @@ export const sharedStrings = {
     rootElementNotFound: 'Root element not found',
     pageDescriptionNotFound: 'Page description metadata not found',
     flyerContentNotFound: 'Flyer content could not be found.',
-    flyerImageCouldNotLoad: (alt: string) => `Could not load flyer image: ${alt}`,
+    flyerImageCouldNotLoad: (alt: string) =>
+      `Could not load flyer image: ${alt}`,
     createFlyerPdfFailed: 'Unable to create the flyer PDF.',
   },
 } as const

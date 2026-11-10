@@ -18,11 +18,15 @@ interface BannerProps {
 export function Banner({ activeTab, onTabChange }: BannerProps) {
   const { tabs } = sharedStrings.navigation
 
-  function handleKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+  function handleKeyDown(
+    event: KeyboardEvent<HTMLButtonElement>,
+    index: number,
+  ) {
     let nextIndex = index
 
     if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length
-    else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length
+    else if (event.key === 'ArrowLeft')
+      nextIndex = (index - 1 + tabs.length) % tabs.length
     else if (event.key === 'Home') nextIndex = 0
     else if (event.key === 'End') nextIndex = tabs.length - 1
     else return

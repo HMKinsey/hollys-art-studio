@@ -11,6 +11,12 @@ npm run dev
 
 Use `npm run build` to create the production site in `dist/`, and `npm run preview` to serve that build locally. Run `npm run lint` for ESLint.
 
+Run `npm run check` before committing or deploying. It runs ESLint, checks Prettier formatting, type-checks TypeScript, builds both site entries, and verifies that the generated HTML references existing production assets.
+
+## Deployment
+
+GitHub Pages must use **Settings → Pages → Build and deployment → Source: GitHub Actions**. The workflow builds and deploys `dist/`; the root `index.html` is for Vite development and must not be published directly. After deployment, the workflow checks that the live site serves compiled JavaScript and CSS.
+
 ## Project structure
 
 - `src/components/layout/` contains the shared site banner and footer.
