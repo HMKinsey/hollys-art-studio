@@ -1,4 +1,4 @@
-import meImage from '../../assets/Me.jpg'
+import meImage from '../../assets/me.jpg'
 import { sharedStrings } from '../../constants/shared'
 import { ContentPanel } from '../shared/ContentPanel'
 import { Heading } from '../shared/Heading'
