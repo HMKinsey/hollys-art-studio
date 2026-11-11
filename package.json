@@ -11,23 +11,35 @@
     "format:check": "prettier --check .",
     "verify:build": "node scripts/verify-build.mjs",
     "check": "npm run lint && npm run format:check && npm run build && npm run verify:build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server:dev": "tsx watch src/server/server.ts",
+    "start": "tsx src/server/server.ts"
   },
   "dependencies": {
     "@fontsource/dancing-script": "^5.3.0",
     "@fontsource/roboto": "^5.3.0",
+    "@supabase/supabase-js": "^2.119.0",
     "clsx": "^2.1.1",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.2.1",
     "qrcode.react": "^4.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.18.5",
-    "tailwind-merge": "^3.7.0"
+    "tailwind-merge": "^3.7.0",
+    "tsx": "^4.23.15"
+  },
+  "engines": {
+    "node": ">=22.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
     "@tailwindcss/vite": "^4.3.5",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
     "@types/node": "^26.6.5",
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
@@ -37,7 +49,8 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.11.0",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.0",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.5",
     "typescript": "^7.0.2",
     "vite": "^5.4.10"

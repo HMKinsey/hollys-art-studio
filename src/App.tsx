@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { FlyerPage } from './pages/FlyerPage'
 import { PortfolioPage } from './pages/PortfolioPage'
 import { sharedStrings } from './constants/shared'
+import AdminPage from './pages/AdminPage'
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
     path: '*',
     element: <PortfolioPage />,
   },
+  {
+    path: 'admin',
+    element: <AdminPage />
+  }
 ])
 
 function App() {
