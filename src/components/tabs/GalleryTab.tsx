@@ -1,18 +1,18 @@
-import { portfolioPieces } from '../../data/portfolio'
-import { sharedStrings } from '../../constants/shared'
-import { Heading } from '../shared/Heading'
+import { portfolioPieces } from '../../data/portfolio';
+import { en } from '../../locales/en';
+import { Heading } from '../shared/Heading';
 
 export function GalleryTab() {
   return (
     <>
       <div className="mb-3 text-center">
-        <Heading>{sharedStrings.gallery.heading}</Heading>
+        <Heading>{en.gallery.heading}</Heading>
       </div>
       <div className="flex flex-col items-center gap-8">
         {portfolioPieces.map((piece) => (
           <figure
             key={piece.title}
-            className="m-0 w-full max-w-[900px] overflow-hidden rounded-3xl bg-frame"
+            className="bg-frame m-0 w-full max-w-[900px] overflow-hidden rounded-3xl"
           >
             <img
               src={piece.image}
@@ -23,5 +23,5 @@ export function GalleryTab() {
         ))}
       </div>
     </>
-  )
+  );
 }

@@ -1,15 +1,15 @@
-import { featuredPortfolioPieces, studioMoments } from '../../data/portfolio'
-import { sharedStrings } from '../../constants/shared'
-import { ContentPanel } from '../shared/ContentPanel'
-import { Heading } from '../shared/Heading'
-import { BodyText } from '../shared/BodyText'
-import { FeaturedArtworkCard } from '../shared/FeaturedArtworkCard'
+import { featuredPortfolioPieces, studioMoments } from '../../data/portfolio';
+import { en } from '../../locales/en';
+import { ContentPanel } from '../shared/ContentPanel';
+import { Heading } from '../shared/Heading';
+import { BodyText } from '../shared/BodyText';
+import { FeaturedArtworkCard } from '../shared/FeaturedArtworkCard';
 
 export function HomeTab() {
   return (
     <ContentPanel>
-      <Heading className="mb-1">{sharedStrings.home.heading}</Heading>
-      <BodyText className="mb-3">{sharedStrings.home.description}</BodyText>
+      <Heading className="mb-1">{en.home.heading}</Heading>
+      <BodyText className="mb-3">{en.home.description}</BodyText>
       <div className="grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {featuredPortfolioPieces.map((piece) => (
           <FeaturedArtworkCard key={piece.title} piece={piece} />
@@ -19,7 +19,7 @@ export function HomeTab() {
         {studioMoments.map((moment) => (
           <figure
             key={moment.image}
-            className="overflow-hidden rounded-3xl bg-frame text-center"
+            className="bg-frame overflow-hidden rounded-3xl text-center"
           >
             <div className="h-[380px] w-full md:h-[400px]">
               <img
@@ -37,5 +37,5 @@ export function HomeTab() {
         ))}
       </div>
     </ContentPanel>
-  )
+  );
 }

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { supabase } from '../supabase';
+import { en } from '../../locales/en';
 
 const router = Router();
 
@@ -7,7 +8,7 @@ router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(400).json({ error: 'Email and password are required.' });
+    return res.status(400).json({ error: en.auth.emailAndPasswordRequired });
   }
 
   const { data, error } = await supabase.auth.signInWithPassword({
@@ -16,12 +17,12 @@ router.post('/login', async (req, res) => {
   });
 
   if (error) {
-    return res.status(401).json({ error: 'Invalid login credentials.' });
+    return res.status(401).json({ error: en.auth.invalidCredentials });
   }
 
-  res.json({ 
-    message: 'Login successful', 
-    token: data.session.access_token 
+  res.json({
+    message: en.auth.signInSuccess,
+    token: data.session.access_token,
   });
 });
 

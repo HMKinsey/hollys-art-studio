@@ -3,6 +3,7 @@ import { login } from '../../lib/api';
 import LoginConfirmation from './LoginConfirmation';
 import { StatusType } from './auth.types';
 import InputField from '../shared/Forms/InputField';
+import { en } from '../../locales/en';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -19,16 +20,14 @@ function LoginForm() {
       const data = await login(email, password);
 
       if (typeof data.token !== 'string') {
-        throw new Error('The server did not return an authentication token.');
+        throw new Error(en.auth.missingAuthenticationToken);
       }
 
       localStorage.setItem('studioAdminToken', data.token);
       setStatus('success');
     } catch (error) {
       const message =
-        error instanceof Error
-          ? error.message
-          : 'Sign in failed. Please try again.';
+        error instanceof Error ? error.message : en.auth.signInFailed;
 
       setErrorMessage(message);
       setStatus('error');
@@ -39,13 +38,13 @@ function LoginForm() {
       className="bg-paper mx-auto flex w-full max-w-sm flex-col gap-4 rounded-lg p-6 shadow"
       onSubmit={handleSubmit}
     >
-      <h1 className="text-2xl font-semibold">Admin sign in</h1>
+      <h1 className="text-2xl font-semibold">{en.auth.adminSignInHeading}</h1>
 
       <InputField
         autoComplete="username"
         disabled={status === 'submitting'}
         id="admin-email"
-        label="Email"
+        label={en.auth.emailLabel}
         onChange={setEmail}
         required
         type="email"
@@ -56,7 +55,7 @@ function LoginForm() {
         autoComplete="current-password"
         disabled={status === 'submitting'}
         id="admin-password"
-        label="Password"
+        label={en.auth.passwordLabel}
         onChange={setPassword}
         required
         type="password"
@@ -70,7 +69,9 @@ function LoginForm() {
         disabled={status === 'submitting'}
         type="submit"
       >
-        {status === 'submitting' ? 'Signing in…' : 'Sign in'}
+        {status === 'submitting'
+          ? en.auth.signingInButton
+          : en.auth.signInButton}
       </button>
     </form>
   );

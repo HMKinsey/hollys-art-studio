@@ -1,15 +1,17 @@
-export async function login(email:string, password: string){
-    const response = await fetch('./api/admin/login', {
-        method: 'POST',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify({ email, password})
-    })
+import { en } from '../locales/en';
 
-    const data = await response.json()
+export async function login(email: string, password: string) {
+  const response = await fetch('./api/admin/login', {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify({ email, password }),
+  });
 
-    if(!response.ok) {
-        throw new Error(data.error ?? 'Login Failed')
-    }
+  const data = await response.json();
 
-    return data
+  if (!response.ok) {
+    throw new Error(data.error ?? en.auth.signInFailed);
+  }
+
+  return data;
 }

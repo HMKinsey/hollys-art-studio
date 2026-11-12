@@ -1,4 +1,21 @@
-export const sharedStrings = {
+export const en = {
+  auth: {
+    adminSignInHeading: 'Admin sign in',
+    emailLabel: 'Email',
+    passwordLabel: 'Password',
+    forgotPasswordPrompt: 'Forgot your password?',
+    resetPasswordButton: 'Reset Password',
+    resetPasswordButtonLabel: 'Reset password',
+    signingInButton: 'Signing in…',
+    signInButton: 'Sign in',
+    signInSuccess: 'Sign in successful.',
+    signInFailed: 'Sign in failed. Please try again.',
+    emailAndPasswordRequired: 'Email and password are required.',
+    invalidCredentials: 'Invalid login credentials.',
+    unableToSignIn: 'Unable to sign in right now.',
+    missingAuthenticationToken:
+      'The server did not return an authentication token.',
+  },
   routes: {
     flyer: '/flyers',
   },
@@ -140,6 +157,6 @@ export const sharedStrings = {
       `Could not load flyer image: ${alt}`,
     createFlyerPdfFailed: 'Unable to create the flyer PDF.',
   },
-} as const
+} as const;
 
-export type StudioTabId = (typeof sharedStrings.navigation.tabs)[number]['id']
+export type StudioTabId = (typeof en.navigation.tabs)[number]['id'];

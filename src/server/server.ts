@@ -2,6 +2,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import { createClient } from '@supabase/supabase-js';
+import { en } from '../locales/en';
 
 dotenv.config({ path: '.env.local' });
 
@@ -33,7 +34,7 @@ app.post('/api/admin/login', async (req, res) => {
   try {
     const { email, password } = req.body ?? {};
     if (typeof email !== 'string' || typeof password !== 'string') {
-      res.status(400).json({ error: 'Email and password are required.' });
+      res.status(400).json({ error: en.auth.emailAndPasswordRequired });
       return;
     }
 
@@ -43,14 +44,14 @@ app.post('/api/admin/login', async (req, res) => {
     });
 
     if (error || !data.session) {
-      res.status(401).json({ error: 'Invalid login credentials.' });
+      res.status(401).json({ error: en.auth.invalidCredentials });
       return;
     }
 
     res.json({ token: data.session.access_token });
   } catch (error: unknown) {
     console.error('Admin login failed:', error);
-    res.status(500).json({ error: 'Unable to sign in right now.' });
+    res.status(500).json({ error: en.auth.unableToSignIn });
   }
 });
 
