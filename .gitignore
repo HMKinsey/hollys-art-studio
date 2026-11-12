@@ -25,3 +25,6 @@ dist-ssr
 
 # Local development instructions
 /instructions.md
+.env
+.env.local
+.env.production

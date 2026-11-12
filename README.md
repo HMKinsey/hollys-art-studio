@@ -4,6 +4,19 @@ A React, TypeScript, and Tailwind website for Holly's Art Studio, built with Vit
 
 ## Development
 
+Use **Node.js 22 or newer**. On Windows, install the current LTS release from
+[nodejs.org](https://nodejs.org/en/download), then close and reopen VS Code so
+new terminals refresh their PATH. Verify the installation in a new terminal:
+
+```sh
+node --version
+npm --version
+```
+
+The `node` command should print `v22` or a newer version. If Windows says
+`'node' is not recognized`, install Node.js and reopen the terminal before
+running the project.
+
 ```sh
 npm install
 npm run dev

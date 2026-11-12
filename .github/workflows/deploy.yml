@@ -30,8 +30,22 @@ jobs:
         uses: actions/configure-pages@v6
       - name: Install dependencies
         run: npm ci
-      - name: Lint, format, type-check, and verify production build
-        run: npm run check
+      - name: Check Render API URL
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
+        run: |
+          if [[ -z "$VITE_API_URL" ]]; then
+            echo "::error::Set the VITE_API_URL repository variable to your Render API URL before deploying."
+            exit 1
+          fi
+          if [[ "$VITE_API_URL" != https://* ]]; then
+            echo "::error::VITE_API_URL must be an https:// URL."
+            exit 1
+          fi
+      - name: Lint, build, and verify production assets
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
+        run: npm run lint && npm run build && npm run verify:build
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
         with:
