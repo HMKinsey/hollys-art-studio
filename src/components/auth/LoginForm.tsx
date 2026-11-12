@@ -1,15 +1,16 @@
-import { FormEvent, useState } from "react";
-import { login } from "../../lib/api";
-import LoginConfirmation from "./LoginConfirmation";
-import { StatusType } from "./auth.types";
+import { FormEvent, useState } from 'react';
+import { login } from '../../lib/api';
+import LoginConfirmation from './LoginConfirmation';
+import { StatusType } from './auth.types';
+import InputField from '../shared/Forms/InputField';
 
-function LoginForm () {
+function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState<StatusType>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-    async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus('submitting');
     setErrorMessage('');
@@ -33,40 +34,34 @@ function LoginForm () {
       setStatus('error');
     }
   }
-    return (
-        <form
+  return (
+    <form
       className="bg-paper mx-auto flex w-full max-w-sm flex-col gap-4 rounded-lg p-6 shadow"
       onSubmit={handleSubmit}
     >
       <h1 className="text-2xl font-semibold">Admin sign in</h1>
 
-      <label className="flex flex-col gap-1" htmlFor="admin-email">
-        Email
-        <input
-          autoComplete="username"
-          className="border-line rounded border px-3 py-2"
-          disabled={status === 'submitting'}
-          id="admin-email"
-          onChange={(event) => setEmail(event.target.value)}
-          required
-          type="email"
-          value={email}
-        />
-      </label>
+      <InputField
+        autoComplete="username"
+        disabled={status === 'submitting'}
+        id="admin-email"
+        label="Email"
+        onChange={setEmail}
+        required
+        type="email"
+        value={email}
+      />
 
-      <label className="flex flex-col gap-1" htmlFor="admin-password">
-        Password
-        <input
-          autoComplete="current-password"
-          className="border-line rounded border px-3 py-2"
-          disabled={status === 'submitting'}
-          id="admin-password"
-          onChange={(event) => setPassword(event.target.value)}
-          required
-          type="password"
-          value={password}
-        />
-      </label>
+      <InputField
+        autoComplete="current-password"
+        disabled={status === 'submitting'}
+        id="admin-password"
+        label="Password"
+        onChange={setPassword}
+        required
+        type="password"
+        value={password}
+      />
 
       <LoginConfirmation errorMessage={errorMessage} status={status} />
 
@@ -78,7 +73,7 @@ function LoginForm () {
         {status === 'submitting' ? 'Signing in…' : 'Sign in'}
       </button>
     </form>
-    )
+  );
 }
 
-export default LoginForm
+export default LoginForm;

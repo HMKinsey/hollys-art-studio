@@ -1,3 +1,5 @@
+import ErrorMessage from '../shared/Messages/ErrorMessage';
+import InformationMessage from '../shared/Messages/InformationMessage';
 import type { StatusType } from './auth.types';
 
 type LoginConfirmationProps = {
@@ -9,15 +11,11 @@ function LoginConfirmation({ status, errorMessage }: LoginConfirmationProps) {
   return (
     <div>
       {status === 'error' && (
-        <p className="text-sm text-red-700" role="alert">
-          {errorMessage}
-        </p>
+        <ErrorMessage errorMessage={errorMessage}/>
       )}
 
       {status === 'success' && (
-        <p className="text-sm" role="status">
-          Sign in successful.
-        </p>
+        <InformationMessage text="Sign in successful." />
       )}
     </div>
   );
