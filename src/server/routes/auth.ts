@@ -5,25 +5,28 @@ import { en } from '../../locales/en';
 const router = Router();
 
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body ?? {};
+    if (typeof email !== 'string' || typeof password !== 'string') {
+      res.status(400).json({ error: en.auth.emailAndPasswordRequired });
+      return;
+    }
 
-  if (!email || !password) {
-    return res.status(400).json({ error: en.auth.emailAndPasswordRequired });
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error || !data.session) {
+      res.status(401).json({ error: en.auth.invalidCredentials });
+      return;
+    }
+
+    res.json({ token: data.session.access_token });
+  } catch (error: unknown) {
+    console.error('Admin login failed:', error);
+    res.status(500).json({ error: en.auth.unableToSignIn });
   }
-
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
-
-  if (error) {
-    return res.status(401).json({ error: en.auth.invalidCredentials });
-  }
-
-  res.json({
-    message: en.auth.signInSuccess,
-    token: data.session.access_token,
-  });
 });
 
 export default router;

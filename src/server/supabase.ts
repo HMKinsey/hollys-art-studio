@@ -10,4 +10,9 @@ if (!supabaseUrl || !supabaseServiceKey) {
   throw new Error('Missing Supabase URL or Service Key');
 }
 
-export const supabase = createClient(supabaseUrl, supabaseServiceKey);
+export const supabase = createClient(supabaseUrl, supabaseServiceKey, {
+  auth: {
+    autoRefreshToken: false,
+    persistSession: false,
+  },
+});

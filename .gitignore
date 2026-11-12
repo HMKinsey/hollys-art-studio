@@ -25,6 +25,7 @@ dist-ssr
 
 # Local development instructions
 /instructions.md
+/src/Notes
 .env
 .env.local
 .env.production
