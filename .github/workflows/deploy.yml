@@ -46,6 +46,8 @@ jobs:
         env:
           VITE_API_URL: ${{ vars.VITE_API_URL }}
         run: npm run lint && npm run build && npm run verify:build
+      - name: Add GitHub Pages fallback for client-side routes
+        run: cp dist/index.html dist/404.html
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5
         with:
