@@ -30,6 +30,8 @@ Run `npm run check` before committing or deploying. It runs ESLint, checks Prett
 
 GitHub Pages must use **Settings → Pages → Build and deployment → Source: GitHub Actions**. The workflow builds and deploys `dist/`; the root `index.html` is for Vite development and must not be published directly. After deployment, the workflow checks that the live site serves compiled JavaScript and CSS.
 
+The Express API is deployed separately to Render using [`render.yaml`](./render.yaml). Follow the **Render deployment** section in [EXPRESS_SETUP.md](./EXPRESS_SETUP.md) to create the service, add its Supabase secrets, and set the `VITE_API_URL` GitHub repository variable. GitHub Pages needs that variable to build the frontend with the correct API URL.
+
 ## Project structure
 
 - `src/components/layout/` contains the shared site banner and footer.

@@ -1,4 +1,4 @@
-import LoginForm from "../components/auth/LoginForm"
+import LoginForm from "../components/auth/AuthLogin"
 import { Footer } from "../components/layout/Footer"
 
 // Page for admin login  to be handled

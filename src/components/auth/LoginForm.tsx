@@ -1,33 +1,21 @@
-import { useState, type FormEvent } from 'react';
+import { FormEvent, useState } from "react";
+import { login } from "../../lib/api";
+import LoginConfirmation from "./LoginConfirmation";
+import { StatusType } from "./auth.types";
 
-const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') ?? '';
-
-function LoginForm() {
+function LoginForm () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [status, setStatus] = useState<
-    'idle' | 'submitting' | 'error' | 'success'
-  >('idle');
+  const [status, setStatus] = useState<StatusType>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus('submitting');
     setErrorMessage('');
 
     try {
-      const response = await fetch(`${apiBaseUrl}/api/admin/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      const data: { error?: unknown; token?: unknown } = await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          typeof data.error === 'string' ? data.error : 'Authentication failed.'
-        );
-      }
+      const data = await login(email, password);
 
       if (typeof data.token !== 'string') {
         throw new Error('The server did not return an authentication token.');
@@ -35,16 +23,18 @@ function LoginForm() {
 
       localStorage.setItem('studioAdminToken', data.token);
       setStatus('success');
-    } catch (error: unknown) {
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : 'Sign in failed. Please try again.';
+
+      setErrorMessage(message);
       setStatus('error');
-      setErrorMessage(
-        error instanceof Error ? error.message : 'Failed to authenticate.'
-      );
     }
   }
-
-  return (
-    <form
+    return (
+        <form
       className="bg-paper mx-auto flex w-full max-w-sm flex-col gap-4 rounded-lg p-6 shadow"
       onSubmit={handleSubmit}
     >
@@ -78,17 +68,7 @@ function LoginForm() {
         />
       </label>
 
-      {status === 'error' && (
-        <p className="text-sm text-red-700" role="alert">
-          {errorMessage}
-        </p>
-      )}
-
-      {status === 'success' && (
-        <p className="text-sm" role="status">
-          Sign in successful.
-        </p>
-      )}
+      <LoginConfirmation errorMessage={errorMessage} status={status} />
 
       <button
         className="bg-rose hover:bg-rose-dark rounded px-4 py-2 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
@@ -98,7 +78,7 @@ function LoginForm() {
         {status === 'submitting' ? 'Signing in…' : 'Sign in'}
       </button>
     </form>
-  );
+    )
 }
 
-export default LoginForm;
+export default LoginForm
