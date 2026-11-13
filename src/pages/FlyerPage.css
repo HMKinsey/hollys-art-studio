@@ -16,64 +16,64 @@
     min-height: 0;
     margin: 0;
     padding: 0;
-    background: var(--surface-canvas) !important;
+    background: var(--surface-canvas);
   }
 
-  .flyer-page {
-    min-height: 0 !important;
-    padding: 0 !important;
-    background: var(--surface-canvas) !important;
+  #root .flyer-page {
+    min-height: 0;
+    padding: 0;
+    background: var(--surface-canvas);
   }
 
-  .flyer-sheet {
-    width: 100% !important;
-    max-width: none !important;
-    min-height: 0 !important;
-    height: auto !important;
-    padding: 0 !important;
-    gap: 3mm !important;
-    border: 0 !important;
-    box-shadow: none !important;
+  .flyer-page .flyer-sheet {
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    height: auto;
+    padding: 0;
+    gap: 3mm;
+    border: 0;
+    box-shadow: none;
     break-inside: avoid;
     page-break-inside: avoid;
   }
 
-  .flyer-artwork-grid {
-    flex-wrap: nowrap !important;
-    gap: 3mm !important;
+  .flyer-page .flyer-artwork-grid {
+    flex-wrap: nowrap;
+    gap: 3mm;
   }
 
-  .flyer-image-frame {
-    height: 52mm !important;
-    width: fit-content !important;
-    padding: 5mm !important;
+  .flyer-page .flyer-image-frame {
+    height: 52mm;
+    width: fit-content;
+    padding: 5mm;
     break-inside: avoid;
   }
 
-  .flyer-image-frame img {
-    width: auto !important;
-    height: 100% !important;
-    max-width: none !important;
+  .flyer-page .flyer-image-frame img {
+    width: auto;
+    height: 100%;
+    max-width: none;
   }
 
-  .flyer-body {
-    font-size: 9pt !important;
-    line-height: 1.4 !important;
+  .flyer-page .flyer-body {
+    font-size: 9pt;
+    line-height: 1.4;
   }
 
-  .flyer-artist-photo {
-    width: auto !important;
-    height: 45mm !important;
+  .flyer-page .flyer-artist-photo {
+    width: auto;
+    height: 45mm;
     aspect-ratio: 3 / 4;
-    object-fit: contain !important;
+    object-fit: contain;
   }
 
-  .flyer-actions {
-    display: none !important;
+  .flyer-page .flyer-actions {
+    display: none;
   }
 
-  a {
-    color: var(--text-primary) !important;
-    text-decoration: none !important;
+  .flyer-page a {
+    color: var(--text-primary);
+    text-decoration: none;
   }
 }

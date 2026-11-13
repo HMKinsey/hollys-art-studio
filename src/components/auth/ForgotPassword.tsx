@@ -1,4 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react';
+import { en } from '../../locales/en';
+import Button from '../ui/Button/Button';
 
 type ForgotPasswordProps = {
   forgotPassword: boolean;
@@ -10,17 +12,11 @@ function ForgotPassword({
   setForgotPassword,
 }: ForgotPasswordProps) {
   return (
-    <div className="flex flex-col items-center gap-2">
-      {!forgotPassword && <p>Forgot your password?</p>}
-      <button
-        aria-label="Reset password"
-        className="bg-rose hover:bg-rose-dark rounded px-4 py-2 font-semibold text-white"
-        onClick={() => setForgotPassword(true)}
-        type="button"
-      >
-        Reset Password
-      </button>
-    </div>
+    <Button 
+          aria-label={en.auth.resetPasswordButtonLabel}
+          onClick={() => setForgotPassword(!forgotPassword)}
+          type="button"
+          buttonText={!forgotPassword ? en.auth.resetPasswordButton : en.auth.returnToLogin} ariaLabel={''}      />
   );
 }
 

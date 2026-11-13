@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { FlyerPage } from './pages/FlyerPage';
 import { PortfolioPage } from './pages/PortfolioPage';
-import { sharedStrings } from './constants/shared';
+import { en } from './locales/en';
 import AdminPage from './pages/AdminPage';
 
 const router = createBrowserRouter([
@@ -10,7 +10,7 @@ const router = createBrowserRouter([
     element: <PortfolioPage />,
   },
   {
-    path: sharedStrings.routes.flyer,
+    path: en.routes.flyer,
     element: <FlyerPage />,
   },
   {
