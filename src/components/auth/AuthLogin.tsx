@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import ForgotPassword from './ForgotPassword';
 import LoginForm from './LoginForm';
+import ResetPassword from './ResetPassword';
 
 function AuthLogin() {
   const [forgotPassword, setForgotPassword] = useState(false);
 
   return (
     <div>
-    <LoginForm />
+    {forgotPassword ? < ResetPassword /> :<LoginForm />}
     <ForgotPassword
         forgotPassword={forgotPassword}
         setForgotPassword={setForgotPassword}

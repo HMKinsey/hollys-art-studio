@@ -4,6 +4,7 @@ export const en = {
     emailLabel: 'Email',
     passwordLabel: 'Password',
     forgotPasswordPrompt: 'Forgot your password?',
+    returnToLogin: 'Return to Login',
     resetPasswordButton: 'Reset Password',
     resetPasswordButtonLabel: 'Reset password',
     signingInButton: 'Signing in…',

@@ -1,0 +1,6 @@
+---
+description: Never use CSS !important declarations in this project.
+alwaysApply: true
+---
+
+Do not use CSS `!important` declarations. Resolve style conflicts through appropriately scoped selectors, clear component styles, or correct cascade order instead.

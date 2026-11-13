@@ -1,4 +1,4 @@
-type InputFieldProps = {
+type InputProps = {
   id: string;
   label: string;
   type: 'text' | 'email' | 'password';
@@ -10,7 +10,7 @@ type InputFieldProps = {
   required?: boolean;
 };
 
-function InputField({
+function Input({
   id,
   label,
   type,
@@ -20,7 +20,7 @@ function InputField({
   placeholder,
   disabled,
   required,
-}: InputFieldProps) {
+}: InputProps) {
   return (
     <label className="flex flex-col gap-1" htmlFor={id}>
       {label}
@@ -39,4 +39,4 @@ function InputField({
   );
 }
 
-export default InputField;
+export default Input;
