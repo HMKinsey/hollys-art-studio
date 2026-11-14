@@ -1,7 +1,8 @@
 import { en } from '../locales/en';
 
 export async function login(email: string, password: string) {
-  const response = await fetch('./api/admin/login', {
+  const apiOrigin = import.meta.env.VITE_API_URL?.replace(/\/+$/, '') ?? '';
+  const response = await fetch(`${apiOrigin}/api/admin/login`, {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify({ email, password }),
