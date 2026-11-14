@@ -1,1 +1,5 @@
-export interface Artwork { id: string; imgage_path: string; name: string };
+export interface Artwork {
+  id: string;
+  imgage_path: string;
+  name: string;
+}
