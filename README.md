@@ -1,6 +1,9 @@
 # Holly's Art Studio
 
-A React, TypeScript, and Tailwind website for Holly's Art Studio, built with Vite.
+A SupaBase, React, TypeScript, and Tailwind website for Holly's Art Studio, built with Vite.
+This is a refresher applcaition for fullstack concepts, hooks and other knowlege, as I have been working in SOLIDJS for the past 18 months, so looking to refresh on key topics. 
+
+Minimal AI has been used to code, it has been used as a guide to set exercises, remind and learn best practises. This could be a lot better and quicker with AI however this is a learning project, so more of a playground. 
 
 ## Development
 
