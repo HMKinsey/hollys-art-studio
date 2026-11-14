@@ -2,6 +2,8 @@
 
 A React, TypeScript, and Tailwind website for Holly's Art Studio, built with Vite.
 
+For context, this is a project used to both illustrate my artwork, but also a learning playground. I am using this application as a refresher of full stack coconcepts. I have been using minimal AI to write code, rather using it to remind myself of how to format things correctly and common practises and build everything from scratch from the ground up (DB/FE/Setup pipelines, linting, practise best practise). Given I have spent the last 18 months working in solid, my React needs a refresher. 
+
 ## Development
 
 Use **Node.js 22 or newer**. On Windows, install the current LTS release from
