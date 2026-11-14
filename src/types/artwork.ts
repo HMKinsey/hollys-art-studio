@@ -1,0 +1,1 @@
+export interface Artwork { id: string; imgage_path: string; name: string };
