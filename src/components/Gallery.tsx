@@ -24,7 +24,7 @@ function Gallery() {
     <div>
       {artworks.map((art) => (
         <div key={art.id} id={art.id}>
-          <img src={art.imgage_path} alt={art.name} style={{ width: '100%' }} />
+          <img src={art.image_path} alt={art.name} style={{ width: '100%' }} />
         </div>
       ))}
     </div>

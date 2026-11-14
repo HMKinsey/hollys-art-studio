@@ -1,10 +1,10 @@
 import Gallery from "../Gallery"
 
-function AdminPage () {
+function CongigurationPage () {
 
     return (<div>
         <Gallery/>
         Lets get some images
         </div>)
 }
-export default AdminPage
+export default CongigurationPage

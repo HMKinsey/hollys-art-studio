@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ForgotPassword from './ForgotPassword';
 import LoginForm from './LoginForm';
 import ResetPassword from './ResetPassword';
-import AdminPage from './AdminPage';
+import CongigurationPage from './AdminPage';
 
 function AuthLogin() {
   const [forgotPassword, setForgotPassword] = useState(false);
@@ -14,7 +14,7 @@ function AuthLogin() {
         forgotPassword={forgotPassword}
         setForgotPassword={setForgotPassword}
       />
-      < AdminPage /> 
+      < CongigurationPage />
     </div>
   );
 }
