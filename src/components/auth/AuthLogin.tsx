@@ -9,12 +9,12 @@ function AuthLogin() {
 
   return (
     <div>
-    {forgotPassword ? < ResetPassword /> :<LoginForm />}
-    <ForgotPassword
+      {forgotPassword ? <ResetPassword /> : <LoginForm />}
+      <ForgotPassword
         forgotPassword={forgotPassword}
         setForgotPassword={setForgotPassword}
       />
-      < CongigurationPage />
+      <CongigurationPage />
     </div>
   );
 }

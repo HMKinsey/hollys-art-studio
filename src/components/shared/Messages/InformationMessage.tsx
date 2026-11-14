@@ -1,10 +1,9 @@
-function InformationMessage({ text }: { text: string}){
-    return (
-        <p className="text-sm" role="status">
-          {text}
-        </p>
-    )
-
+function InformationMessage({ text }: { text: string }) {
+  return (
+    <p className="text-sm" role="status">
+      {text}
+    </p>
+  );
 }
 
-export default InformationMessage
+export default InformationMessage;

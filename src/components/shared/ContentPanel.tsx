@@ -1,15 +1,15 @@
-import type { ReactNode } from 'react'
-import { cn } from '../../lib/cn'
+import type { ReactNode } from 'react';
+import { cn } from '../../lib/cn';
 
 interface ContentPanelProps {
-  children: ReactNode
-  className?: string
+  children: ReactNode;
+  className?: string;
 }
 
 export function ContentPanel({ children, className }: ContentPanelProps) {
   return (
-    <section className={cn('rounded-3xl bg-paper p-3 md:p-4', className)}>
+    <section className={cn('bg-paper rounded-3xl p-3 md:p-4', className)}>
       {children}
     </section>
-  )
+  );
 }
