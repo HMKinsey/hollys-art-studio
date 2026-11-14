@@ -1,5 +1,5 @@
-import { Footer } from '../components/layout/Footer'
-import { PortfolioTabs } from '../components/tabs/PortfolioTabs'
+import { Footer } from '../components/layout/Footer';
+import { PortfolioTabs } from '../components/tabs/PortfolioTabs';
 
 export function PortfolioPage() {
   return (
@@ -7,5 +7,5 @@ export function PortfolioPage() {
       <PortfolioTabs />
       <Footer />
     </main>
-  )
+  );
 }

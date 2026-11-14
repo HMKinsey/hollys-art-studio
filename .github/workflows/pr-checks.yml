@@ -2,7 +2,7 @@ name: Code Quality Checks
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
 
 jobs:
   validate_code:
@@ -18,7 +18,7 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      # npm ci is strictly better than npm install for pipelines 
+      # npm ci is strictly better than npm install for pipelines
       # because it installs exact versions from your package-lock.json
       - name: Install Dependencies
         run: npm ci

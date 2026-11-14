@@ -1,18 +1,18 @@
-import type { HTMLAttributes } from 'react'
-import { cn } from '../../lib/cn'
+import type { HTMLAttributes } from 'react';
+import { cn } from '../../lib/cn';
 
-type BodyTextProps = HTMLAttributes<HTMLParagraphElement>
+type BodyTextProps = HTMLAttributes<HTMLParagraphElement>;
 
 export function BodyText({ children, className, ...props }: BodyTextProps) {
   return (
     <p
       className={cn(
-        'font-sans text-base leading-relaxed text-text-secondary',
-        className,
+        'text-text-secondary font-sans text-base leading-relaxed',
+        className
       )}
       {...props}
     >
       {children}
     </p>
-  )
+  );
 }

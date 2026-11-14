@@ -1,13 +1,13 @@
-import type { PortfolioPiece } from '../../data/portfolio'
-import { Heading } from './Heading'
+import type { PortfolioPiece } from '../../data/portfolio';
+import { Heading } from './Heading';
 
 interface FeaturedArtworkCardProps {
-  piece: PortfolioPiece
+  piece: PortfolioPiece;
 }
 
 export function FeaturedArtworkCard({ piece }: FeaturedArtworkCardProps) {
   return (
-    <figure className="m-0 min-w-0 overflow-hidden rounded-3xl bg-frame text-center">
+    <figure className="bg-frame m-0 min-w-0 overflow-hidden rounded-3xl text-center">
       <div className="aspect-[4/5] w-full overflow-hidden rounded-3xl">
         <img
           src={piece.image}
@@ -21,5 +21,5 @@ export function FeaturedArtworkCard({ piece }: FeaturedArtworkCardProps) {
         </Heading>
       </figcaption>
     </figure>
-  )
+  );
 }

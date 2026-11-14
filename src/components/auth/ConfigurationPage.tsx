@@ -1,10 +1,11 @@
-import Gallery from "../Gallery"
+import Gallery from '../Gallery';
 
-function CongigurationPage () {
-
-    return (<div>
-        <Gallery/>
-        Lets get some images
-        </div>)
+function CongigurationPage() {
+  return (
+    <div>
+      <Gallery />
+      Lets get some images
+    </div>
+  );
 }
-export default CongigurationPage
+export default CongigurationPage;
