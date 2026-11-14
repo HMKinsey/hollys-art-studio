@@ -30,9 +30,11 @@ jobs:
         uses: actions/configure-pages@v6
       - name: Install dependencies
         run: npm ci
-      - name: Check Render API URL
+      - name: Check frontend environment variables
         env:
           VITE_API_URL: ${{ vars.VITE_API_URL }}
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
         run: |
           if [[ -z "$VITE_API_URL" ]]; then
             echo "::error::Set the VITE_API_URL repository variable to your Render API URL before deploying."
@@ -42,9 +44,19 @@ jobs:
             echo "::error::VITE_API_URL must be an https:// URL."
             exit 1
           fi
+          if [[ -z "$VITE_SUPABASE_URL" ]]; then
+            echo "::error::Set the VITE_SUPABASE_URL repository variable before deploying."
+            exit 1
+          fi
+          if [[ -z "$VITE_SUPABASE_ANON_KEY" ]]; then
+            echo "::error::Set the VITE_SUPABASE_ANON_KEY repository variable before deploying."
+            exit 1
+          fi
       - name: Lint, build, and verify production assets
         env:
           VITE_API_URL: ${{ vars.VITE_API_URL }}
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
         run: npm run lint && npm run build && npm run verify:build
       - name: Add GitHub Pages fallback for client-side routes
         run: cp dist/index.html dist/404.html
