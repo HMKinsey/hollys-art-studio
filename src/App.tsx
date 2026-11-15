@@ -7,7 +7,7 @@ import { FlyerPage } from './pages/FlyerPage';
 import { PortfolioPage } from './pages/PortfolioPage';
 import { en } from './locales/en';
 import AdminPage from './pages/AdminPage';
-import TestingPage from './temp test/TestingPage';
+import TestingPage from './pages/testing/TestingPage';
 
 const router = createBrowserRouter([
   {

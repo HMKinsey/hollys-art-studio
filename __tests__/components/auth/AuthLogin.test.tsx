@@ -1,12 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import AuthLogin from '../AuthLogin';
+import AuthLogin from '../../../src/components/auth/AuthLogin';
 
-jest.mock('../../../lib/api', () => ({
+jest.mock('../../../src/api/client', () => ({
   login: jest.fn(),
 }));
 
-jest.mock('../ConfigurationPage', () => ({
+jest.mock('../../../src/components/auth/ConfigurationPage', () => ({
   __esModule: true,
   default: ({ accessToken }: { accessToken: string }) => (
     <div>Admin configuration token: {accessToken}</div>

@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { jest } from '@jest/globals';
-import { FlyerPage } from '../FlyerPage';
+import { FlyerPage } from '../../src/pages/FlyerPage';
 
 describe('FlyerPage', () => {
   it('renders the flyer and prints when the print button is clicked', () => {

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { apiUrl } from '../lib/api';
-import type { Artwork } from '../types/artwork';
+import { apiUrl } from '../../api/client';
+import type { Artwork } from '../../types/artwork.types';
+import { artworksQueryKey } from '../queries/artworksQueryKey';
 
 interface UploadVariables {
   file: File;
@@ -8,7 +9,7 @@ interface UploadVariables {
   token: string | null;
 }
 
-export function useUploadFile(onUnauthorized: () => void) {
+export function useUploadArtwork(onUnauthorized: () => void) {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -43,7 +44,7 @@ export function useUploadFile(onUnauthorized: () => void) {
       return result as Artwork;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['artworks'] });
+      queryClient.invalidateQueries({ queryKey: artworksQueryKey });
     },
   });
 }
