@@ -2,6 +2,14 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { PortfolioTabs } from '../../../src/components/tabs/PortfolioTabs';
 
+jest.mock('../../../src/hooks/queries/useArtworks', () => ({
+  useArtworks: () => ({
+    data: [],
+    isLoading: false,
+    isError: false,
+  }),
+}));
+
 describe('PortfolioTabs', () => {
   it('starts on the home tab and displays its content', () => {
     render(<PortfolioTabs />);
@@ -26,7 +34,7 @@ describe('PortfolioTabs', () => {
       'aria-selected',
       'true'
     );
-    expect(screen.getByRole('heading', { name: 'Recent Work' })).toBeVisible();
+    expect(screen.getByRole('heading', { name: 'Gallery' })).toBeVisible();
     expect(
       screen.getByRole('tab', { name: 'Live Wedding Painting' })
     ).toHaveAttribute('aria-selected', 'false');

@@ -2,6 +2,14 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { PortfolioPage } from '../../src/pages/PortfolioPage';
 
+jest.mock('../../src/hooks/queries/useArtworks', () => ({
+  useArtworks: () => ({
+    data: [],
+    isLoading: false,
+    isError: false,
+  }),
+}));
+
 describe('PortfolioPage', () => {
   it('renders the portfolio navigation, initial content, and contact links', () => {
     render(<PortfolioPage />);
