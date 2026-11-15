@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Gallery from '../Gallery';
 import UploadImage from '../UploadImage';
 
@@ -12,6 +13,7 @@ function CongigurationPage({
 }: ConfigurationPageProps) {
   return (
     <div>
+      <Link to="/testing">Testing playground</Link>
       <UploadImage accessToken={accessToken} onUnauthorized={onUnauthorized} />
       <Gallery />
       Lets get some images

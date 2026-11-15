@@ -1,8 +1,13 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 import { FlyerPage } from './pages/FlyerPage';
 import { PortfolioPage } from './pages/PortfolioPage';
 import { en } from './locales/en';
 import AdminPage from './pages/AdminPage';
+import TestingPage from './temp test/TestingPage';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +21,14 @@ const router = createBrowserRouter([
   {
     path: 'admin',
     element: <AdminPage />,
+  },
+  {
+    path: 'testing',
+    element: localStorage.getItem('studioAdminToken') ? (
+      <TestingPage />
+    ) : (
+      <Navigate to="/admin" replace />
+    ),
   },
   {
     path: '*',
