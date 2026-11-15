@@ -1,0 +1,27 @@
+import { portfolioPieces } from '../../data/portfolio';
+import { en } from '../../locales/en';
+import { Heading } from '../shared/Heading';
+
+export function RecentWorkTab() {
+  return (
+    <>
+      <div className="mb-3 text-center">
+        <Heading>{en.recentwork.heading}</Heading>
+      </div>
+      <div className="flex flex-col items-center gap-8">
+        {portfolioPieces.map((piece) => (
+          <figure
+            key={piece.title}
+            className="bg-frame m-0 w-full max-w-[900px] overflow-hidden rounded-3xl"
+          >
+            <img
+              src={piece.image}
+              alt={piece.imageAlt}
+              className="block h-auto w-full object-contain"
+            />
+          </figure>
+        ))}
+      </div>
+    </>
+  );
+}
