@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 import authRouter from './routes/auth';
+import artworksRouter from './routes/artworks';
 
 const app = express();
 const port = Number.parseInt(process.env.PORT ?? '3000', 10);
@@ -13,6 +14,7 @@ const allowedOrigins = [
 app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 app.use('/api/admin', authRouter);
+app.use('/api/admin/artworks', artworksRouter);
 
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'Express API is running.' });

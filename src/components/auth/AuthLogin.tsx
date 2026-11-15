@@ -6,15 +6,45 @@ import CongigurationPage from './ConfigurationPage';
 
 function AuthLogin() {
   const [forgotPassword, setForgotPassword] = useState(false);
+  const [accessToken, setAccessToken] = useState(
+    () => localStorage.getItem('studioAdminToken') ?? ''
+  );
+
+  function handleLogin(token: string) {
+    localStorage.setItem('studioAdminToken', token);
+    setAccessToken(token);
+  }
+
+  function handleLogout() {
+    localStorage.removeItem('studioAdminToken');
+    setAccessToken('');
+  }
 
   return (
     <div>
-      {forgotPassword ? <ResetPassword /> : <LoginForm />}
-      <ForgotPassword
-        forgotPassword={forgotPassword}
-        setForgotPassword={setForgotPassword}
-      />
-      <CongigurationPage />
+      {accessToken ? (
+        <>
+          <button type="button" onClick={handleLogout}>
+            Sign out
+          </button>
+          <CongigurationPage
+            accessToken={accessToken}
+            onUnauthorized={handleLogout}
+          />
+        </>
+      ) : (
+        <>
+          {forgotPassword ? (
+            <ResetPassword />
+          ) : (
+            <LoginForm onLogin={handleLogin} />
+          )}
+          <ForgotPassword
+            forgotPassword={forgotPassword}
+            setForgotPassword={setForgotPassword}
+          />
+        </>
+      )}
     </div>
   );
 }
