@@ -2,6 +2,7 @@ import type { Artwork } from '../types/artwork.types';
 import { useArtworks } from '../hooks/queries/useArtworks';
 import SearchBox from './shared/SearchBox';
 import { useMemo, useState } from 'react';
+import GalleryImages from './GalleryImages';
 
 function Gallery() {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -24,29 +25,25 @@ function Gallery() {
   if (isLoading) {
     return <div>Loading Spinner</div>;
   }
+
+  const headerText =
+    artworks && artworks.length > 0
+      ? `Displaying ${filteredArt.length} of ${artworks.length} results`
+      : 'No results are saved';
+
   return (
     <div>
-      <h2>
-        {artworks && artworks.length > 0
-          ? `Displaying ${filteredArt.length} of ${artworks.length} results`
-          : 'No results are saved'}
-      </h2>
-
-      <SearchBox
-        searchTerm={searchTerm}
-        autoFocus
-        setSearchTerm={setSearchTerm}
-        searchboxText="Search results: "
-        placeholder="Filter Results..."
-      />
-      <div className={'flex flex-wrap gap-6'}>
-        {filteredArt.map((art) => (
-          <div key={art.id} id={art.id}>
-            <h3>{`File Name: ${art.name}`}</h3>
-            <img src={art.image_path} alt={art.name} className={'h-72'} />
-          </div>
-        ))}
+      <div className={'flex flex-col items-center'}>
+        <h2>{headerText}</h2>
+        <SearchBox
+          searchTerm={searchTerm}
+          autoFocus
+          setSearchTerm={setSearchTerm}
+          searchboxText="Search results: "
+          placeholder="Filter Results..."
+        />
       </div>
+      {GalleryImages(filteredArt)}
     </div>
   );
 }
