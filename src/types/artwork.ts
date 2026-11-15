@@ -1,5 +1,5 @@
 export interface Artwork {
   id: string;
-  imgage_path: string;
+  image_path: string;
   name: string;
 }

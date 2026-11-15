@@ -5,7 +5,11 @@ import { StatusType } from './auth.types';
 import InputField from '../ui/Input/Input';
 import { en } from '../../locales/en';
 
-function LoginForm() {
+interface LoginFormProps {
+  onLogin: (token: string) => void;
+}
+
+function LoginForm({ onLogin }: LoginFormProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState<StatusType>('idle');
@@ -23,7 +27,7 @@ function LoginForm() {
         throw new Error(en.auth.missingAuthenticationToken);
       }
 
-      localStorage.setItem('studioAdminToken', data.token);
+      onLogin(data.token);
       setStatus('success');
     } catch (error) {
       const message =
