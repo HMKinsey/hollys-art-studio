@@ -1,12 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import Button from '../components/ui/Button/Button';
-
-type Post = {
-  id: number;
-  userId: number;
-  title: string;
-  body: string;
-};
+import { POST } from '../types/artwork';
 
 function UseQueryTestingPlayground() {
   const { data, isLoading, isError, error, refetch } = useQuery({
@@ -23,7 +17,7 @@ function UseQueryTestingPlayground() {
         throw new Error('Request failed');
       }
 
-      return (await response.json()) as Post[];
+      return (await response.json()) as POST[];
     },
   });
 
