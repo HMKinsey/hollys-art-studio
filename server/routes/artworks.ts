@@ -19,6 +19,26 @@ const imageExtensions: Record<string, string> = {
   'image/heif': 'heif',
 };
 
+function getArtworkStoragePath(imagePath: string): string | null {
+  const storagePrefix = `/storage/v1/object/public/${artworkBucket}/`;
+  const pathname = new URL(imagePath).pathname;
+  const prefixIndex = pathname.indexOf(storagePrefix);
+
+  if (prefixIndex === -1) {
+    return null;
+  }
+
+  const encodedPath = pathname.slice(prefixIndex + storagePrefix.length);
+  if (!encodedPath) {
+    return null;
+  }
+
+  return encodedPath
+    .split('/')
+    .map((segment) => decodeURIComponent(segment))
+    .join('/');
+}
+
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 20 * 1024 * 1024 },
@@ -57,13 +77,13 @@ function parseUpload(req: Request, res: Response, next: NextFunction) {
 async function requireAdmin(req: Request, res: Response, next: NextFunction) {
   const token = req.header('authorization')?.match(/^Bearer\s+(.+)$/i)?.[1];
   if (!token) {
-    res.status(401).json({ error: 'Please sign in before uploading artwork.' });
+    res.status(401).json({ error: 'Please sign in before managing artwork.' });
     return;
   }
 
   const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
   if (!adminEmail) {
-    res.status(503).json({ error: 'Artwork uploads are not configured.' });
+    res.status(503).json({ error: 'Artwork management is not configured.' });
     return;
   }
 
@@ -79,7 +99,7 @@ async function requireAdmin(req: Request, res: Response, next: NextFunction) {
     if (data.user.email?.trim().toLowerCase() !== adminEmail) {
       res
         .status(403)
-        .json({ error: 'You do not have permission to add a new image' });
+        .json({ error: 'You do not have permission to manage artwork.' });
       return;
     }
 
@@ -140,6 +160,63 @@ router.post('/', requireAdmin, parseUpload, async (req, res) => {
   } catch (error: unknown) {
     console.error('Artwork upload failed:', error);
     res.status(500).json({ error: 'Unable to save artwork.' });
+  }
+});
+
+router.delete('/:id', requireAdmin, async (req, res) => {
+  try {
+    const artworkId = req.params.id;
+    const { data: artwork, error: lookupError } = await supabase
+      .from('artwork')
+      .select('id, image_path')
+      .eq('id', artworkId)
+      .maybeSingle();
+
+    if (lookupError) {
+      throw lookupError;
+    }
+
+    if (!artwork) {
+      res.status(404).json({ error: 'Artwork not found.' });
+      return;
+    }
+
+    const storagePath = getArtworkStoragePath(artwork.image_path);
+    if (!storagePath) {
+      res.status(500).json({ error: 'Unable to locate the artwork image.' });
+      return;
+    }
+
+    const { error: deleteError } = await supabase
+      .from('artwork')
+      .delete()
+      .eq('id', artworkId);
+
+    if (deleteError) {
+      throw deleteError;
+    }
+
+    const { error: storageError } = await supabase.storage
+      .from(artworkBucket)
+      .remove([storagePath]);
+
+    if (storageError) {
+      console.error(
+        'Artwork was deleted, but its image file could not be removed:',
+        storageError
+      );
+      res.json({
+        id: artworkId,
+        warning:
+          'Artwork was removed from the gallery, but its image file could not be deleted.',
+      });
+      return;
+    }
+
+    res.json({ id: artworkId });
+  } catch (error: unknown) {
+    console.error('Artwork deletion failed:', error);
+    res.status(500).json({ error: 'Unable to delete artwork.' });
   }
 });
 

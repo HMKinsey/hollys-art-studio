@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { jest } from '@jest/globals';
+import type { Dispatch, SetStateAction } from 'react';
 import { getArtworks } from '../../src/api/artworks.api';
 import type { Artwork } from '../../src/types/artwork.types';
 import Gallery from '../../src/components/Gallery';
@@ -25,7 +26,9 @@ const artworks: Artwork[] = [
   },
 ];
 
-function renderGallery() {
+function renderGallery(
+  setSelectedArtwork: Dispatch<SetStateAction<Artwork | null>> = jest.fn()
+) {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: { retry: false },
@@ -34,7 +37,7 @@ function renderGallery() {
 
   return render(
     <QueryClientProvider client={queryClient}>
-      <Gallery />
+      <Gallery setSelectedArtwork={setSelectedArtwork} />
     </QueryClientProvider>
   );
 }
@@ -85,6 +88,19 @@ describe('Gallery', () => {
       screen.getByRole('img', { name: 'Sunset over the sea' })
     ).toHaveAttribute('src', 'https://example.com/sunset.jpg');
     expect(screen.getByText('Displaying 2 of 2 results')).toBeInTheDocument();
+  });
+
+  it('passes the chosen artwork to the selection handler', async () => {
+    mockGetArtworks.mockResolvedValue(artworks);
+    const setSelectedArtwork =
+      jest.fn<Dispatch<SetStateAction<Artwork | null>>>();
+
+    renderGallery(setSelectedArtwork);
+
+    await screen.findByText('File Name: Sunset over the sea');
+    fireEvent.click(screen.getAllByRole('button', { name: 'Edit' })[0]);
+
+    expect(setSelectedArtwork).toHaveBeenCalledWith(artworks[0]);
   });
 
   it('filters artwork by name and restores results when search is cleared', async () => {

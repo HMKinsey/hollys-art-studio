@@ -1,10 +1,14 @@
 import type { Artwork } from '../types/artwork.types';
 import { useArtworks } from '../hooks/queries/useArtworks';
 import SearchBox from './shared/SearchBox';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type Dispatch, type SetStateAction } from 'react';
 import GalleryImages from './GalleryImages';
 
-function Gallery() {
+interface GalleryProps {
+  setSelectedArtwork: Dispatch<SetStateAction<Artwork | null>>;
+}
+
+function Gallery({ setSelectedArtwork }: GalleryProps) {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const normalisedSearchTerm = searchTerm.trim().toLocaleLowerCase();
 
@@ -43,7 +47,10 @@ function Gallery() {
           placeholder="Filter Results..."
         />
       </div>
-      {GalleryImages(filteredArt)}
+      <GalleryImages
+        filteredArt={filteredArt}
+        setSelectedArtwork={setSelectedArtwork}
+      />
     </div>
   );
 }
