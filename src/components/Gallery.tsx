@@ -43,7 +43,7 @@ function Gallery() {
         {filteredArt.map((art) => (
           <div key={art.id} id={art.id}>
             <h3>{`File Name: ${art.name}`}</h3>
-            <img src={art.image_path} alt={art.name} className={'w-72'} />
+            <img src={art.image_path} alt={art.name} className={'h-72'} />
           </div>
         ))}
       </div>
