@@ -37,6 +37,7 @@ function UseQueryTestingPlayground() {
     <div>
       TEST QUERY
       <Button
+        size="md"
         onClick={() => refetch()}
         ariaLabel="retry button"
         buttonText="Retry"

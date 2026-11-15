@@ -24,9 +24,6 @@ function Gallery() {
   if (isLoading) {
     return <div>Loading Spinner</div>;
   }
-
-  const FilterArtworks = 'pass state to searchbox..';
-
   return (
     <div>
       <h2>
@@ -42,13 +39,14 @@ function Gallery() {
         searchboxText="Search results: "
         placeholder="Filter Results..."
       />
-      {FilterArtworks}
-      {filteredArt.map((art) => (
-        <div key={art.id} id={art.id}>
-          <h3>{`File Name: ${art.name}`}</h3>
-          <img src={art.image_path} alt={art.name} className={'w-72'} />
-        </div>
-      ))}
+      <div className={'flex flex-wrap gap-6'}>
+        {filteredArt.map((art) => (
+          <div key={art.id} id={art.id}>
+            <h3>{`File Name: ${art.name}`}</h3>
+            <img src={art.image_path} alt={art.name} className={'w-72'} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

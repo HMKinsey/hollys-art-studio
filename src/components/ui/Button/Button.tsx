@@ -1,22 +1,49 @@
-interface ButtonProps {
-  ariaLabel: string;
-  onClick: () => void;
-  type: 'submit' | 'reset' | 'button' | undefined;
-  buttonText: string;
+import { cva, type VariantProps } from 'class-variance-authority';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import { cn } from '../../../lib/cn';
+
+const buttonVariants = cva(
+  'inline-flex items-center justify-center rounded bg-rose font-semibold text-white hover:bg-rose-dark',
+  {
+    variants: {
+      size: {
+        sm: 'h-8 px-3 text-sm',
+        md: 'h-12 px-5 text-base',
+        lg: 'h-16 px-8 text-lg',
+      },
+    },
+    defaultVariants: {
+      size: 'md',
+    },
+  }
+);
+
+export interface ButtonProps
+  extends
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  ariaLabel?: string;
+  buttonText?: ReactNode;
 }
 
-function Button({ ariaLabel, onClick, type, buttonText }: ButtonProps) {
+function Button({
+  ariaLabel,
+  className,
+  size,
+  type = 'button',
+  buttonText,
+  children,
+  ...props
+}: ButtonProps) {
   return (
-    <div className="flex flex-col items-center gap-2">
-      <button
-        aria-label={ariaLabel}
-        className="bg-rose hover:bg-rose-dark rounded px-4 py-2 font-semibold text-white"
-        onClick={onClick}
-        type={type}
-      >
-        {buttonText}
-      </button>
-    </div>
+    <button
+      {...props}
+      aria-label={ariaLabel}
+      className={cn(buttonVariants({ size }), className)}
+      type={type}
+    >
+      {children ?? buttonText ?? 'Button'}
+    </button>
   );
 }
 
