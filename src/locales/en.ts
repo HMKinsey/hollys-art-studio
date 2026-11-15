@@ -46,6 +46,7 @@ export const en = {
       { id: 'home', label: 'Live Wedding Painting' },
       { id: 'process', label: 'The Process' },
       { id: 'details', label: 'About Me' },
+      { id: 'recentwork', label: 'Recent Work' },
       { id: 'gallery', label: 'Gallery' },
     ],
   },
@@ -69,6 +70,9 @@ export const en = {
     artistImageAlt: 'Holly, the artist behind Holly’s Art Studio',
   },
   gallery: {
+    heading: 'Gallery',
+  },
+  recentwork: {
     heading: 'Recent Work',
   },
   process: {

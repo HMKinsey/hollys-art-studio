@@ -3,14 +3,16 @@ import { useState } from 'react';
 import type { StudioTabId } from '../../locales/en';
 import { Banner } from '../layout/Banner';
 import { AboutTab } from './AboutTab';
-import { GalleryTab } from './GalleryTab';
+import { RecentWorkTab } from './RecentWorkTab';
 import { HomeTab } from './HomeTab';
 import { ProcessTab } from './ProcessTab';
+import { GalleryTab } from './GalleryTab';
 
 const panels: Array<{ id: StudioTabId; component: ComponentType }> = [
   { id: 'home', component: HomeTab },
   { id: 'process', component: ProcessTab },
   { id: 'details', component: AboutTab },
+  { id: 'recentwork', component: RecentWorkTab },
   { id: 'gallery', component: GalleryTab },
 ];
 
