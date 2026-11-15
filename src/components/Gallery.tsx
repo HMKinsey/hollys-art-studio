@@ -26,20 +26,22 @@ function Gallery() {
   }
   return (
     <div>
-      <h2>
-        {artworks && artworks.length > 0
-          ? `Displaying ${filteredArt.length} of ${artworks.length} results`
-          : 'No results are saved'}
-      </h2>
+      <div className={'flex flex-col items-center'}>
+        <h2>
+          {artworks && artworks.length > 0
+            ? `Displaying ${filteredArt.length} of ${artworks.length} results`
+            : 'No results are saved'}
+        </h2>
 
-      <SearchBox
-        searchTerm={searchTerm}
-        autoFocus
-        setSearchTerm={setSearchTerm}
-        searchboxText="Search results: "
-        placeholder="Filter Results..."
-      />
-      <div className={'flex flex-wrap gap-6'}>
+        <SearchBox
+          searchTerm={searchTerm}
+          autoFocus
+          setSearchTerm={setSearchTerm}
+          searchboxText="Search results: "
+          placeholder="Filter Results..."
+        />
+      </div>
+      <div className={'flex flex-wrap justify-center gap-6'}>
         {filteredArt.map((art) => (
           <div key={art.id} id={art.id}>
             <h3>{`File Name: ${art.name}`}</h3>

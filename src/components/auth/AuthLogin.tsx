@@ -3,6 +3,7 @@ import ForgotPassword from './ForgotPassword';
 import LoginForm from './LoginForm';
 import ResetPassword from './ResetPassword';
 import CongigurationPage from './ConfigurationPage';
+import Button from '../ui/Button/Button';
 
 function AuthLogin() {
   const [forgotPassword, setForgotPassword] = useState(false);
@@ -23,15 +24,17 @@ function AuthLogin() {
   return (
     <div>
       {accessToken ? (
-        <>
-          <button type="button" onClick={handleLogout}>
-            Sign out
-          </button>
+        <div>
+          <div className={'mr-8 mb-5 flex justify-end'}>
+            <Button type="button" onClick={handleLogout}>
+              Sign out
+            </Button>
+          </div>
           <CongigurationPage
             accessToken={accessToken}
             onUnauthorized={handleLogout}
           />
-        </>
+        </div>
       ) : (
         <>
           {forgotPassword ? (

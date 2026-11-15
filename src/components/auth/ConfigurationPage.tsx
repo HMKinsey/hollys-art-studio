@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import Gallery from '../Gallery';
 import UploadImage from '../UploadImage';
+import { buttonVariants } from '../ui/Button/Button';
 
 interface ConfigurationPageProps {
   accessToken: string;
@@ -13,7 +14,11 @@ function CongigurationPage({
 }: ConfigurationPageProps) {
   return (
     <div>
-      <Link to="/testing">Testing playground</Link>
+      <div className={'mr-8 flex justify-end'}>
+        <Link to="/testing" className={buttonVariants({ size: 'md' })}>
+          Testing playground
+        </Link>
+      </div>
       <UploadImage accessToken={accessToken} onUnauthorized={onUnauthorized} />
       <Gallery />
     </div>
