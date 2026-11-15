@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
-import { login } from '../../lib/api';
+import { login } from '../../api/client';
 import LoginConfirmation from './LoginConfirmation';
-import { StatusType } from './auth.types';
+import type { StatusType } from '../../types/auth.types';
 import InputField from '../ui/Input/Input';
 import { en } from '../../locales/en';
 

@@ -1,9 +1,9 @@
 # Holly's Art Studio
 
 A SupaBase, React, TypeScript, and Tailwind website for Holly's Art Studio, built with Vite.
-This is a refresher applcaition for fullstack concepts, hooks and other knowlege, as I have been working in SOLIDJS for the past 18 months, so looking to refresh on key topics. 
+This is a refresher applcaition for fullstack concepts, hooks and other knowlege, as I have been working in SOLIDJS for the past 18 months, so looking to refresh on key topics.
 
-Minimal AI has been used to code, it has been used as a guide to set exercises, remind and learn best practises. This could be a lot better and quicker with AI however this is a learning project, so more of a playground. 
+Minimal AI has been used to code, it has been used as a guide to set exercises, remind and learn best practises. This could be a lot better and quicker with AI however this is a learning project, so more of a playground.
 
 ## Development
 
@@ -37,10 +37,17 @@ The Express API is deployed separately to Render using [`render.yaml`](./render.
 
 ## Project structure
 
-- `src/components/layout/` contains the shared site banner and footer.
-- `src/components/shared/` contains reusable UI and typography primitives.
-- `src/components/tabs/` contains the portfolio tab controller and its panels.
-- `src/pages/` contains route-level page components.
+- `server/` contains the standalone Express API and its route handlers.
+- `src/api/` contains the frontend API client and artwork data access.
+- `src/components/` contains reusable interface elements, authentication UI,
+  layout, and portfolio tabs.
+- `src/hooks/` contains reusable React Query hooks, grouped by query and mutation.
+- `src/lib/` contains shared utilities and the frontend Supabase client.
+- `src/pages/` contains route-level pages, including the testing playground.
+- `src/types/` contains shared domain and UI types.
+- `__tests__/` contains Jest and React Testing Library tests grouped by API,
+  components, and pages.
 - `src/assets/` contains images imported by React components.
-- `src/constants/` and `src/data/` contain shared copy and portfolio data.
-- `flyers/index.html` is the secondary Vite HTML entry point for the `/flyers/` page; its React page component is in `src/pages/FlyerPage.tsx`.
+- `src/locales/` and `src/data/` contain shared copy and portfolio data.
+- `flyers/index.html` is the secondary Vite HTML entry point for the `/flyers/`
+  page; its React page component is in `src/pages/FlyerPage.tsx`.

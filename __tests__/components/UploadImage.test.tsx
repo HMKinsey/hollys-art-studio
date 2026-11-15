@@ -2,11 +2,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { jest } from '@jest/globals';
-import { apiUrl } from '../../lib/api';
-import type { Artwork } from '../../types/artwork';
-import UploadImage from '../UploadImage';
+import { apiUrl } from '../../src/api/client';
+import type { Artwork } from '../../src/types/artwork.types';
+import UploadImage from '../../src/components/UploadImage';
 
-jest.mock('../../lib/api', () => ({
+jest.mock('../../src/api/client', () => ({
   apiUrl: jest.fn((path: string) => path),
 }));
 
@@ -50,7 +50,7 @@ describe('UploadImage', () => {
   beforeEach(() => {
     mockApiUrl.mockClear();
     mockFetch.mockReset();
-    global.fetch = mockFetch;
+    globalThis.fetch = mockFetch;
   });
 
   it('uploads the selected file and name with the session token', async () => {

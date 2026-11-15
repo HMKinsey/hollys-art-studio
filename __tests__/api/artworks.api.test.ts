@@ -1,9 +1,9 @@
 import { jest } from '@jest/globals';
-import { supaBase } from '../../lib/supabase';
-import type { Artwork } from '../../types/artwork';
-import { getArtworks } from '../artworks';
+import { supaBase } from '../../src/lib/supabase';
+import type { Artwork } from '../../src/types/artwork.types';
+import { getArtworks } from '../../src/api/artworks.api';
 
-jest.mock('../../lib/supabase.js', () => ({
+jest.mock('../../src/lib/supabase', () => ({
   supaBase: {
     from: jest.fn(),
   },

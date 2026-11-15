@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import Button from '../components/ui/Button/Button';
-import { POST } from '../types/artwork';
+import Button from '../../components/ui/Button/Button';
+import type { Post } from '../../types/post.types';
 
 function TestingPlayground() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<POST[]>([]);
+  const [data, setData] = useState<Post[]>([]);
   const [badPractise, setBadPractise] = useState(0);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ function TestingPlayground() {
           throw new Error('Request failed');
         }
 
-        const result: POST[] = await response.json();
+        const result: Post[] = await response.json();
         setData(result);
       } catch (caughtError) {
         if (caughtError instanceof Error && caughtError.name !== 'AbortError') {

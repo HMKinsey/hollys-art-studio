@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { PortfolioPage } from '../PortfolioPage';
+import { PortfolioPage } from '../../src/pages/PortfolioPage';
 
 describe('PortfolioPage', () => {
   it('renders the portfolio navigation, initial content, and contact links', () => {

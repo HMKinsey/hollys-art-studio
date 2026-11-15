@@ -1,6 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-import { getArtworks } from '../api/artworks';
-import type { Artwork } from '../types/artwork';
+import type { Artwork } from '../types/artwork.types';
+import { useArtworks } from '../hooks/queries/useArtworks';
 import SearchBox from './shared/SearchBox';
 import { useMemo, useState } from 'react';
 
@@ -8,15 +7,7 @@ function Gallery() {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const normalisedSearchTerm = searchTerm.trim().toLocaleLowerCase();
 
-  const {
-    data: artworks = [],
-    isLoading,
-    isError,
-    error,
-  } = useQuery<Artwork[], Error>({
-    queryKey: ['artworks'],
-    queryFn: getArtworks,
-  });
+  const { data: artworks = [], isLoading, isError, error } = useArtworks();
 
   const filteredArt: Artwork[] = useMemo(
     () =>
@@ -46,6 +37,7 @@ function Gallery() {
 
       <SearchBox
         searchTerm={searchTerm}
+        autoFocus
         setSearchTerm={setSearchTerm}
         searchboxText="Search results: "
         placeholder="Filter Results..."

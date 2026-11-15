@@ -1,6 +1,6 @@
 import ErrorMessage from '../shared/Messages/ErrorMessage';
 import InformationMessage from '../shared/Messages/InformationMessage';
-import type { StatusType } from './auth.types';
+import type { StatusType } from '../../types/auth.types';
 import { en } from '../../locales/en';
 
 type LoginConfirmationProps = {

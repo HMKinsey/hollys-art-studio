@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import AdminPage from '../AdminPage';
+import AdminPage from '../../src/pages/AdminPage';
 
-jest.mock('../../lib/api', () => ({
+jest.mock('../../src/api/client', () => ({
   login: jest.fn(),
 }));
 
-jest.mock('../../components/auth/ConfigurationPage', () => ({
+jest.mock('../../src/components/auth/ConfigurationPage', () => ({
   __esModule: true,
   default: () => <div>Admin configuration</div>,
 }));

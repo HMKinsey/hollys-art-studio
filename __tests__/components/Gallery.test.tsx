@@ -2,11 +2,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { jest } from '@jest/globals';
-import { getArtworks } from '../../api/artworks';
-import type { Artwork } from '../../types/artwork';
-import Gallery from '../Gallery';
+import { getArtworks } from '../../src/api/artworks.api';
+import type { Artwork } from '../../src/types/artwork.types';
+import Gallery from '../../src/components/Gallery';
 
-jest.mock('../../api/artworks', () => ({
+jest.mock('../../src/api/artworks.api', () => ({
   getArtworks: jest.fn(),
 }));
 

@@ -1,5 +1,5 @@
 import { supaBase } from '../lib/supabase';
-import type { Artwork } from '../types/artwork';
+import type { Artwork } from '../types/artwork.types';
 
 export async function getArtworks(): Promise<Artwork[]> {
   const { data, error } = await supaBase

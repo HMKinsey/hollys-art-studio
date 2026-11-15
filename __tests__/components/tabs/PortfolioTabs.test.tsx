@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { PortfolioTabs } from '../PortfolioTabs';
+import { PortfolioTabs } from '../../../src/components/tabs/PortfolioTabs';
 
 describe('PortfolioTabs', () => {
   it('starts on the home tab and displays its content', () => {

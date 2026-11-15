@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react';
-import { useUploadFile } from '../hooks/useUploadFile';
+import { useUploadArtwork } from '../hooks/mutations/useUploadArtwork';
 import ErrorMessage from './shared/Messages/ErrorMessage';
 import InformationMessage from './shared/Messages/InformationMessage';
 
@@ -11,7 +11,7 @@ interface UploadImageProps {
 function UploadImage({ accessToken, onUnauthorized }: UploadImageProps) {
   const [name, setName] = useState('');
   const [file, setFile] = useState<File | null>(null);
-  const mutation = useUploadFile(onUnauthorized);
+  const mutation = useUploadArtwork(onUnauthorized);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

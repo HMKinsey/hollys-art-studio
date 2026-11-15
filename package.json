@@ -10,13 +10,13 @@
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
     "test": "jest",
-    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,md}\" \"server/**/*.{js,jsx,ts,tsx,css,md}\" \"__tests__/**/*.{js,jsx,ts,tsx,cjs,md}\"",
     "format:write": "prettier --write .",
     "verify:build": "node scripts/verify-build.mjs",
     "check": "npm run lint && npm run format:check && npm run build && npm run verify:build",
     "preview": "vite preview",
-    "server:dev": "tsx watch src/server/server.ts",
-    "start": "tsx src/server/server.ts"
+    "server:dev": "tsx watch server/server.ts",
+    "start": "tsx server/server.ts"
   },
   "dependencies": {
     "@fontsource/dancing-script": "^5.3.0",
