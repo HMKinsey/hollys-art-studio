@@ -12,15 +12,18 @@ function ForgotPassword({
   setForgotPassword,
 }: ForgotPasswordProps) {
   return (
-    <Button
-      aria-label={en.auth.resetPasswordButtonLabel}
-      onClick={() => setForgotPassword(!forgotPassword)}
-      type="button"
-      buttonText={
-        !forgotPassword ? en.auth.resetPasswordButton : en.auth.returnToLogin
-      }
-      ariaLabel={''}
-    />
+    <div className={'m-5 flex justify-center'}>
+      <Button
+        size={'md'}
+        aria-label={en.auth.resetPasswordButtonLabel}
+        onClick={() => setForgotPassword(!forgotPassword)}
+        type="button"
+        buttonText={
+          !forgotPassword ? en.auth.resetPasswordButton : en.auth.returnToLogin
+        }
+        ariaLabel={''}
+      />
+    </div>
   );
 }
 

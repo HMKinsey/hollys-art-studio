@@ -16,7 +16,6 @@ function CongigurationPage({
       <Link to="/testing">Testing playground</Link>
       <UploadImage accessToken={accessToken} onUnauthorized={onUnauthorized} />
       <Gallery />
-      Lets get some images
     </div>
   );
 }

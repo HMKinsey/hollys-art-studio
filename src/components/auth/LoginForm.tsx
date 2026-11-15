@@ -4,6 +4,7 @@ import LoginConfirmation from './LoginConfirmation';
 import type { StatusType } from '../../types/auth.types';
 import InputField from '../ui/Input/Input';
 import { en } from '../../locales/en';
+import Form from '../ui/Form/Form';
 
 interface LoginFormProps {
   onLogin: (token: string) => void;
@@ -38,10 +39,7 @@ function LoginForm({ onLogin }: LoginFormProps) {
     }
   }
   return (
-    <form
-      className="bg-paper mx-auto flex w-full max-w-sm flex-col gap-4 rounded-lg p-6 shadow"
-      onSubmit={handleSubmit}
-    >
+    <Form onSubmit={handleSubmit}>
       <h1 className="text-2xl font-semibold">{en.auth.adminSignInHeading}</h1>
 
       <InputField
@@ -77,7 +75,7 @@ function LoginForm({ onLogin }: LoginFormProps) {
           ? en.auth.signingInButton
           : en.auth.signInButton}
       </button>
-    </form>
+    </Form>
   );
 }
 

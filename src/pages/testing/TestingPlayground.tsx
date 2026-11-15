@@ -53,7 +53,8 @@ function TestingPlayground() {
     <div>
       <p>testing playground</p>
       <Button
-        ariaLabel=""
+        size={'sm'}
+        ariaLabel="testing playground button"
         onClick={() => handleClick()}
         type="button"
         buttonText="Retry"
