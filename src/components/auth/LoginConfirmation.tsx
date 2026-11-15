@@ -12,7 +12,6 @@ function LoginConfirmation({ status, errorMessage }: LoginConfirmationProps) {
   return (
     <div>
       {status === 'error' && <ErrorMessage errorMessage={errorMessage} />}
-
       {status === 'success' && (
         <InformationMessage text={en.auth.signInSuccess} />
       )}

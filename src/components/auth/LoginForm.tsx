@@ -1,10 +1,10 @@
-import { FormEvent, useState } from 'react';
-import { login } from '../../api/client';
+import { useState, type FormEvent } from 'react';
 import LoginConfirmation from './LoginConfirmation';
 import type { StatusType } from '../../types/auth.types';
 import InputField from '../ui/Input/Input';
 import { en } from '../../locales/en';
 import Form from '../ui/Form/Form';
+import { useLogin } from '../../hooks/mutations/useLogin';
 
 interface LoginFormProps {
   onLogin: (token: string) => void;
@@ -13,38 +13,24 @@ interface LoginFormProps {
 function LoginForm({ onLogin }: LoginFormProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [status, setStatus] = useState<StatusType>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
+  const loginMutation = useLogin();
+  const status: StatusType =
+    loginMutation.status === 'pending' ? 'submitting' : loginMutation.status;
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const errorMessage = loginMutation.error?.message ?? '';
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus('submitting');
-    setErrorMessage('');
-
-    try {
-      const data = await login(email, password);
-
-      if (typeof data.token !== 'string') {
-        throw new Error(en.auth.missingAuthenticationToken);
-      }
-
-      onLogin(data.token);
-      setStatus('success');
-    } catch (error) {
-      const message =
-        error instanceof Error ? error.message : en.auth.signInFailed;
-
-      setErrorMessage(message);
-      setStatus('error');
-    }
+    loginMutation.mutate({ email, password }, { onSuccess: onLogin });
   }
+
   return (
     <Form onSubmit={handleSubmit}>
       <h1 className="text-2xl font-semibold">{en.auth.adminSignInHeading}</h1>
 
       <InputField
         autoComplete="username"
-        disabled={status === 'submitting'}
+        disabled={loginMutation.isPending}
         id="admin-email"
         label={en.auth.emailLabel}
         onChange={setEmail}
