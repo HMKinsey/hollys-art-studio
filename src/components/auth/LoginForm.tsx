@@ -21,7 +21,10 @@ function LoginForm({ onLogin }: LoginFormProps) {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    loginMutation.mutate({ email, password }, { onSuccess: onLogin });
+    loginMutation.mutate(
+      { email, password },
+      { onSuccess: (token) => onLogin(token) }
+    );
   }
 
   return (
