@@ -77,7 +77,9 @@ async function requireAdmin(req: Request, res: Response, next: NextFunction) {
     }
 
     if (data.user.email?.trim().toLowerCase() !== adminEmail) {
-      res.status(403).json({ error: 'You are not allowed to upload artwork.' });
+      res
+        .status(403)
+        .json({ error: 'You do not have permission to add a new image' });
       return;
     }
 
@@ -98,9 +100,7 @@ router.post('/', requireAdmin, parseUpload, async (req, res) => {
       .json({ error: 'Artwork name and image file are required.' });
     return;
   }
-
   const filePath = `${randomUUID()}.${imageExtensions[file.mimetype]}`;
-  let operation = 'upload image to artwork-images';
 
   try {
     const { data: uploadedFile, error: uploadError } = await supabase.storage
@@ -111,7 +111,6 @@ router.post('/', requireAdmin, parseUpload, async (req, res) => {
       throw uploadError;
     }
 
-    operation = 'save artwork details to the artwork table';
     const { data: publicUrlData } = supabase.storage
       .from(artworkBucket)
       .getPublicUrl(uploadedFile.path);
@@ -139,19 +138,8 @@ router.post('/', requireAdmin, parseUpload, async (req, res) => {
 
     res.status(201).json(artwork);
   } catch (error: unknown) {
-    const message =
-      error instanceof Error
-        ? error.message
-        : typeof error === 'object' &&
-            error !== null &&
-            'message' in error &&
-            typeof error.message === 'string'
-          ? error.message
-          : 'Unknown Supabase error.';
-    console.error(`Artwork upload failed while trying to ${operation}:`, error);
-    res.status(500).json({
-      error: `Unable to ${operation}: ${message}`,
-    });
+    console.error('Artwork upload failed:', error);
+    res.status(500).json({ error: 'Unable to save artwork.' });
   }
 });
 
