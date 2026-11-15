@@ -36,9 +36,6 @@ function Gallery() {
 
   const FilterArtworks = 'pass state to searchbox..';
 
-  // pass the state to the searchbox
-  // the state would be the search term
-
   return (
     <div>
       <h2>
@@ -65,13 +62,3 @@ function Gallery() {
 }
 
 export default Gallery;
-
-// Add a search input that filters artworks by name without changing the data
-// returned by Supabase. Ignore leading/trailing whitespace and match regardless
-// of letter case.
-
-// **Practise:** React state, event types, string methods, and deriving values
-// from typed data.
-
-// **Done when:** searching and clearing the input works, and the empty-result
-// state is distinct from the initial loading state.
