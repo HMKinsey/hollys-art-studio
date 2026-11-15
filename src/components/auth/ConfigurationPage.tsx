@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Gallery from '../Gallery';
 import UploadImage from '../UploadImage';
-import { buttonVariants } from '../ui/Button/Button';
+import { buttonVariants } from '../ui/Button/buttonVariants';
 
 interface ConfigurationPageProps {
   accessToken: string;
