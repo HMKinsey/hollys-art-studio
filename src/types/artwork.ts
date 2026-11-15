@@ -10,9 +10,3 @@ export interface POST {
   title: string;
   body: string;
 }
-
-export const enum SearchboxTypes {
-  TEXT = 'text',
-  EMAIL = 'email',
-  PASSWORD = 'password',
-}
