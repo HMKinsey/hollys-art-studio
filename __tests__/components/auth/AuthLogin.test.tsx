@@ -1,6 +1,7 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import AuthLogin from '../../../src/components/auth/AuthLogin';
+import { renderWithQueryClient } from '../../utils/renderWithQueryClient';
 
 jest.mock('../../../src/api/client', () => ({
   login: jest.fn(),
@@ -19,7 +20,7 @@ describe('AuthLogin', () => {
   });
 
   it('shows the sign-in form when there is no saved token', () => {
-    render(<AuthLogin />);
+    renderWithQueryClient(<AuthLogin />);
 
     expect(
       screen.getByRole('heading', { name: 'Admin sign in' })
@@ -32,7 +33,7 @@ describe('AuthLogin', () => {
   it('shows the admin configuration and clears the token on sign out', () => {
     localStorage.setItem('studioAdminToken', 'saved-token');
 
-    render(<AuthLogin />);
+    renderWithQueryClient(<AuthLogin />);
 
     expect(
       screen.getByText('Admin configuration token: saved-token')

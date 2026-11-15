@@ -1,8 +1,9 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { jest } from '@jest/globals';
 import { login } from '../../../src/api/client';
 import LoginForm from '../../../src/components/auth/LoginForm';
+import { renderWithQueryClient } from '../../utils/renderWithQueryClient';
 
 jest.mock('../../../src/api/client', () => ({
   login: jest.fn(),
@@ -19,7 +20,7 @@ describe('LoginForm', () => {
     const onLogin = jest.fn();
     mockLogin.mockResolvedValue({ token: 'test-token' });
 
-    render(<LoginForm onLogin={onLogin} />);
+    renderWithQueryClient(<LoginForm onLogin={onLogin} />);
     fireEvent.change(screen.getByLabelText('Email'), {
       target: { value: 'admin@example.com' },
     });
@@ -42,7 +43,7 @@ describe('LoginForm', () => {
     const onLogin = jest.fn();
     mockLogin.mockRejectedValue(new Error('Invalid credentials'));
 
-    render(<LoginForm onLogin={onLogin} />);
+    renderWithQueryClient(<LoginForm onLogin={onLogin} />);
     fireEvent.change(screen.getByLabelText('Email'), {
       target: { value: 'admin@example.com' },
     });
@@ -58,7 +59,7 @@ describe('LoginForm', () => {
   it('reports an error if the response has no authentication token', async () => {
     mockLogin.mockResolvedValue({});
 
-    render(<LoginForm onLogin={jest.fn()} />);
+    renderWithQueryClient(<LoginForm onLogin={jest.fn()} />);
     fireEvent.change(screen.getByLabelText('Email'), {
       target: { value: 'admin@example.com' },
     });

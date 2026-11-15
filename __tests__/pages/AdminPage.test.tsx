@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import AdminPage from '../../src/pages/AdminPage';
+import { renderWithQueryClient } from '../utils/renderWithQueryClient';
 
 jest.mock('../../src/api/client', () => ({
   login: jest.fn(),
@@ -17,7 +18,7 @@ describe('AdminPage', () => {
   });
 
   it('renders the admin sign-in form for a signed-out visitor', () => {
-    render(<AdminPage />);
+    renderWithQueryClient(<AdminPage />);
 
     expect(
       screen.getByRole('heading', { name: 'Admin sign in' })
