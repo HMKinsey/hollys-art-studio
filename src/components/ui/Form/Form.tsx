@@ -1,12 +1,8 @@
-import { cva } from 'class-variance-authority';
 import type { FormHTMLAttributes } from 'react';
 import { cn } from '../../../lib/cn';
+import { formVariants } from './formVariants';
 
 type FormProps = FormHTMLAttributes<HTMLFormElement>;
-
-const formVariants = cva(
-  'bg-paper mx-auto flex w-full max-w-sm flex-col gap-4 rounded-lg p-6 shadow'
-);
 
 function Form({ children, className, ...props }: FormProps) {
   return (
