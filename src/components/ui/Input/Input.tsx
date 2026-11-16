@@ -1,3 +1,7 @@
+import { cn } from '../../../lib/cn';
+import { labelVariants } from '../Label/labelVariants';
+import { inputVariants } from './inputVariants';
+
 type InputProps = {
   id: string;
   label: string;
@@ -5,6 +9,7 @@ type InputProps = {
   value: string;
   onChange: (value: string) => void;
   autoComplete?: string;
+  className?: string | undefined;
   placeholder?: string;
   disabled?: boolean;
   required?: boolean;
@@ -15,6 +20,7 @@ function Input({
   label,
   type,
   value,
+  className,
   onChange,
   autoComplete,
   placeholder,
@@ -22,11 +28,11 @@ function Input({
   required,
 }: InputProps) {
   return (
-    <label className="flex flex-col gap-1" htmlFor={id}>
+    <label className={cn(labelVariants, className)} htmlFor={id}>
       {label}
       <input
         autoComplete={autoComplete}
-        className="border-line rounded border px-3 py-2"
+        className={cn(inputVariants(), className)}
         disabled={disabled}
         id={id}
         onChange={(event) => onChange(event.target.value)}
